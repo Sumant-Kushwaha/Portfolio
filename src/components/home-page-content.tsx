@@ -61,7 +61,7 @@ const HomePageContent: React.FC = () => {
           <h3 className="text-md font-semibold text-accent mb-3 text-center">Core Technologies</h3>
           <div className="flex flex-wrap justify-center items-center gap-2 px-2">
             {techStack.map((skill) => (
-              <Badge key={skill} variant="outline" className="shadow-sm px-3 py-1 text-xs border-primary/50 text-primary hover:bg-primary/10">
+              <Badge key={skill} variant="outline" className="shadow-sm px-3 py-1 text-xs border-primary/50 text-foreground hover:bg-primary/10">
                 {skill}
               </Badge>
             ))}
@@ -135,3 +135,4 @@ const HomePageContent: React.FC = () => {
 };
 
 export default HomePageContent;
+
