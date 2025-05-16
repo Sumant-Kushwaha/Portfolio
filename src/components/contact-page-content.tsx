@@ -4,7 +4,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Mail, Phone, Send, User as UserIcon, MessageSquare } from "lucide-react";
+import { Mail, Phone, Send, User as UserIcon, MessageSquare, Info, MessageCircleMore } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -65,22 +65,23 @@ const ContactPageContent: React.FC = () => {
     <div className="flex flex-col space-y-2.5">
       <Card className="shadow-lg">
         <CardHeader className="p-3 pb-1">
-          <CardTitle className="text-lg font-bold text-foreground text-center">
+          <CardTitle className="text-xl font-bold text-foreground text-center flex items-center justify-center">
+            <Info size={20} className="mr-2 text-accent" />
             Contact Information
           </CardTitle>
-          <CardDescription className="text-sm text-muted-foreground pt-0.5 text-center">
+          <CardDescription className="text-base text-muted-foreground pt-0.5 text-center">
             You can reach me directly via email or phone.
           </CardDescription>
         </CardHeader>
-        <CardContent className="p-3 pt-1 text-sm space-y-2">
+        <CardContent className="p-3 pt-1 text-base space-y-2">
           <Card className="p-0 shadow-sm hover:shadow-md transition-shadow bg-card">
             <CardContent className="p-2">
               <a
                 href="mailto:SumantKushwaha.dev@gmail.com"
                 className="flex items-center transition-colors w-full"
               >
-                <Mail size={16} className="text-accent mr-2 flex-shrink-0" />
-                <span className="text-xs text-foreground">SumantKushwaha.dev@gmail.com</span>
+                <Mail size={18} className="text-accent mr-2 flex-shrink-0" />
+                <span className="text-sm text-foreground">SumantKushwaha.dev@gmail.com</span>
               </a>
             </CardContent>
           </Card>
@@ -91,8 +92,8 @@ const ContactPageContent: React.FC = () => {
                 href="tel:+919939824083"
                 className="flex items-center transition-colors w-full"
               >
-                <Phone size={16} className="text-accent mr-2 flex-shrink-0" />
-                <span className="text-xs text-foreground">+91 9939824083</span>
+                <Phone size={18} className="text-accent mr-2 flex-shrink-0" />
+                <span className="text-sm text-foreground">+91 9939824083</span>
               </a>
             </CardContent>
           </Card>
@@ -101,10 +102,11 @@ const ContactPageContent: React.FC = () => {
 
       <Card className="shadow-lg">
         <CardHeader className="p-3 pb-1">
-          <CardTitle className="text-lg font-bold text-foreground text-center">
+          <CardTitle className="text-xl font-bold text-foreground text-center flex items-center justify-center">
+            <MessageCircleMore size={20} className="mr-2 text-accent" />
             Send a Message
           </CardTitle>
-          <CardDescription className="text-sm text-muted-foreground pt-0.5 text-center">
+          <CardDescription className="text-base text-muted-foreground pt-0.5 text-center">
             Or use the form below to send an inquiry.
           </CardDescription>
         </CardHeader>
@@ -116,14 +118,14 @@ const ContactPageContent: React.FC = () => {
                 name="fullName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-xs flex items-center">
-                      <UserIcon size={14} className="mr-1.5 text-accent" />
+                    <FormLabel className="text-sm flex items-center">
+                      <UserIcon size={16} className="mr-1.5 text-accent" />
                       Full Name
                     </FormLabel>
                     <FormControl>
-                      <Input placeholder="Your Full Name" {...field} className="text-xs p-2 h-9" />
+                      <Input placeholder="Your Full Name" {...field} className="text-sm p-2 h-9" />
                     </FormControl>
-                    <FormMessage className="text-xs" />
+                    <FormMessage className="text-sm" />
                   </FormItem>
                 )}
               />
@@ -132,14 +134,14 @@ const ContactPageContent: React.FC = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-xs flex items-center">
-                      <Mail size={14} className="mr-1.5 text-accent" />
+                    <FormLabel className="text-sm flex items-center">
+                      <Mail size={16} className="mr-1.5 text-accent" />
                       Email Address
                     </FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="your.email@example.com" {...field} className="text-xs p-2 h-9" />
+                      <Input type="email" placeholder="your.email@example.com" {...field} className="text-sm p-2 h-9" />
                     </FormControl>
-                    <FormMessage className="text-xs" />
+                    <FormMessage className="text-sm" />
                   </FormItem>
                 )}
               />
@@ -148,23 +150,23 @@ const ContactPageContent: React.FC = () => {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-xs flex items-center">
-                       <MessageSquare size={14} className="mr-1.5 text-accent" />
+                    <FormLabel className="text-sm flex items-center">
+                       <MessageSquare size={16} className="mr-1.5 text-accent" />
                       Message
                     </FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Your message..."
                         {...field}
-                        className="text-xs p-2 min-h-[80px]"
+                        className="text-sm p-2 min-h-[80px]"
                       />
                     </FormControl>
-                    <FormMessage className="text-xs" />
+                    <FormMessage className="text-sm" />
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full h-9 text-xs">
-                <Send size={14} className="mr-2" />
+              <Button type="submit" className="w-full h-9 text-sm">
+                <Send size={16} className="mr-2" />
                 Send Message
               </Button>
             </form>
