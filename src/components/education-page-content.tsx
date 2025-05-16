@@ -3,13 +3,14 @@
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { CalendarDays, MapPin } from "lucide-react";
+import { CalendarDays, MapPin, GraduationCap } from "lucide-react";
 
 const EducationPageContent: React.FC = () => {
   return (
     <div className="flex flex-col space-y-2.5">
       <Card className="shadow-lg">
-        <CardHeader className="p-3">
+        <CardHeader className="p-3 flex flex-col items-center justify-center">
+          <GraduationCap size={40} className="mb-2 text-primary" />
           <CardTitle className="text-3xl font-semibold text-primary text-center">
             My Education
           </CardTitle>
