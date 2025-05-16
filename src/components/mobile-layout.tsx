@@ -31,6 +31,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
         return <ContactPageContent />;
       case 'Projects':
       case 'Experience':
+      // case 'About': // Removed About for now
         return (
           <div className="p-4 text-center flex-grow flex flex-col justify-center items-center">
             <h2 className="text-5xl font-semibold text-primary">{activeTab}</h2>
@@ -59,12 +60,10 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           )}
         >
           {/* Status Bar Area */}
-          <div className="h-7 flex items-center justify-between text-foreground z-10 shrink-0 px-1.5"> {/* Updated px-1 to px-1.5 */}
+          <div className="h-7 flex items-center justify-between text-foreground z-10 shrink-0 px-1.5">
             {/* Left "Ear" - Clock */}
             <div className="flex-1 flex justify-center items-center">
-              <div className="bg-muted/30 p-1.5 rounded-full flex items-center">
-                <ClientOnlyTime />
-              </div>
+              <ClientOnlyTime />
             </div>
             {/* Notch Spacer for layout */}
             <div className="w-[130px] shrink-0"></div>
@@ -103,6 +102,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               <Home size={20} />
               <span className="text-2xl mt-0.5">Home</span>
             </Button>
+            {/* Removed About Button */}
             <Button
               variant="ghost"
               size="icon"
