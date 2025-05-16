@@ -2,10 +2,10 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Wifi, BatteryFull, Signal, Home, UserCircle, Settings as SettingsIcon } from 'lucide-react'; // Added Home, UserCircle, SettingsIcon
+import { Wifi, BatteryFull, Signal, Home, GraduationCap, Briefcase, Award, Mail, Settings as SettingsIcon, UserCircle } from 'lucide-react';
 import ClientOnlyTime from '@/components/client-only-time';
 import ThemeToggleButton from '@/components/theme-toggle-button';
-import { Button } from '@/components/ui/button'; // Added Button import
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 interface MobileLayoutProps {
@@ -67,19 +67,27 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             )}
           </div>
 
-          {/* Bottom Navigation Bar */}
-          <div className="h-16 bg-background border-t border-border flex items-center justify-around p-1 shrink-0 shadow-t-md">
-            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-2 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
-              <Home size={22} />
-              <span className="text-xs mt-0.5">Home</span>
+          {/* Bottom Navigation Bar - Made transparent */}
+          <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-t-md">
+            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
+              <Home size={20} />
+              <span className="text-[10px] mt-0.5">Home</span>
             </Button>
-            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-2 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
-              <UserCircle size={22} />
-              <span className="text-xs mt-0.5">Profile</span>
+            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
+              <GraduationCap size={20} />
+              <span className="text-[10px] mt-0.5">Education</span>
             </Button>
-            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-2 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
-              <SettingsIcon size={22} />
-              <span className="text-xs mt-0.5">Settings</span>
+            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
+              <Briefcase size={20} />
+              <span className="text-[10px] mt-0.5">Projects</span>
+            </Button>
+            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
+              <Award size={20} />
+              <span className="text-[10px] mt-0.5">Experience</span>
+            </Button>
+            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
+              <Mail size={20} />
+              <span className="text-[10px] mt-0.5">Contact</span>
             </Button>
           </div>
         </div>
