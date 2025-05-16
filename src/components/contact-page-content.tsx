@@ -65,8 +65,8 @@ const ContactPageContent: React.FC = () => {
     <div className="flex flex-col space-y-2.5">
       <Card className="shadow-lg">
         <CardHeader className="p-3">
-          <CardTitle className="text-xl font-bold text-foreground text-center flex flex-col items-center justify-center">
-            <Info size={48} className="mb-2 text-accent" />
+          <CardTitle className="text-2xl font-bold text-foreground text-center flex flex-col items-center justify-center">
+            <Info size={32} className="mb-2 text-accent" />
             Contact Information
           </CardTitle>
           <CardDescription className="text-base text-muted-foreground pt-0.5 text-center">
@@ -80,7 +80,7 @@ const ContactPageContent: React.FC = () => {
                 href="mailto:SumantKushwaha.dev@gmail.com"
                 className="flex items-center transition-colors w-full"
               >
-                <Mail size={18} className="text-accent mr-2 flex-shrink-0" />
+                <Mail size={16} className="text-accent mr-2 flex-shrink-0" />
                 <span className="text-sm text-foreground">SumantKushwaha.dev@gmail.com</span>
               </a>
             </CardContent>
@@ -92,7 +92,7 @@ const ContactPageContent: React.FC = () => {
                 href="tel:+919939824083"
                 className="flex items-center transition-colors w-full"
               >
-                <Phone size={18} className="text-accent mr-2 flex-shrink-0" />
+                <Phone size={16} className="text-accent mr-2 flex-shrink-0" />
                 <span className="text-sm text-foreground">+91 9939824083</span>
               </a>
             </CardContent>
@@ -102,8 +102,8 @@ const ContactPageContent: React.FC = () => {
 
       <Card className="shadow-lg">
         <CardHeader className="p-3">
-          <CardTitle className="text-xl font-bold text-foreground text-center flex flex-col items-center justify-center">
-            <MessageCircleMore size={48} className="mb-2 text-accent" />
+          <CardTitle className="text-2xl font-bold text-foreground text-center flex flex-col items-center justify-center">
+            <MessageCircleMore size={32} className="mb-2 text-accent" />
             Send a Message
           </CardTitle>
           <CardDescription className="text-base text-muted-foreground pt-0.5 text-center">

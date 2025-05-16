@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Phone, Briefcase, Zap, Code, Users, Palette, Brain, Lightbulb } from 'lucide-react'; 
+import { Mail, Phone, Briefcase, Zap, Code, Users } from 'lucide-react'; 
 
 const techStack = [
   "Kotlin", "Jetpack Compose", "Android Studio", "Firebase", "REST APIs",
@@ -27,7 +27,7 @@ const HomePageContent: React.FC = () => {
   return (
     <div className="flex flex-col text-foreground space-y-2.5">
       {/* Top Section (Personal Introduction) */}
-      <Card className="shadow-lg mb-2.5">
+      <Card className="shadow-lg">
         <CardContent className="p-3">
           <div className="flex flex-col items-center text-center">
             <Avatar className="w-20 h-20 mb-2 border-2 border-primary">
@@ -52,7 +52,7 @@ const HomePageContent: React.FC = () => {
       {/* Second Section Wrapped in Cards */}
       <div className="flex-grow space-y-2.5">
         
-        <Card className="shadow-lg mb-2.5">
+        <Card className="shadow-lg">
           <CardHeader className="p-2">
             <CardTitle className="text-2xl font-semibold text-primary text-center">Highlights & Skills</CardTitle>
           </CardHeader>
@@ -61,7 +61,7 @@ const HomePageContent: React.FC = () => {
               <h3 className="text-lg font-semibold text-accent mb-2 text-center">Core Technologies</h3>
               <div className="flex flex-wrap justify-center items-center gap-1.5 px-1">
                 {techStack.map((skill) => (
-                  <Badge key={skill} variant="outline" className="shadow-sm px-2.5 py-1 text-lg border-primary/50 text-foreground hover:bg-primary/10">
+                  <Badge key={skill} variant="outline" className="shadow-sm px-2.5 py-1 text-sm border-primary/50 text-foreground hover:bg-primary/10">
                     {skill}
                   </Badge>
                 ))}
@@ -70,62 +70,62 @@ const HomePageContent: React.FC = () => {
           </CardContent>
         </Card>
 
-        <Card className="shadow-lg mb-2.5">
+        <Card className="shadow-lg">
           <CardContent className="p-2"> 
             <div className="grid grid-cols-2 gap-2"> 
               <Card className="shadow-md bg-card"> 
                 <CardHeader className="p-2 pb-1">
                   <CardTitle className="text-lg font-semibold text-center flex flex-col items-center gap-1"> 
-                    <Briefcase size={22} className="text-primary" /> 
+                    <Briefcase size={20} className="text-primary" /> 
                     Android Projects
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-2 pt-0 text-center">
-                  <p className="text-3xl font-bold text-accent">10+</p> 
-                  <p className="text-base text-muted-foreground">Completed</p>
+                  <p className="text-2xl font-bold text-accent">10+</p> 
+                  <p className="text-sm text-muted-foreground">Completed</p>
                 </CardContent>
               </Card>
               <Card className="shadow-md bg-card">
                 <CardHeader className="p-2 pb-1">
                   <CardTitle className="text-lg font-semibold text-center flex flex-col items-center gap-1">
-                    <Zap size={22} className="text-primary" />
+                    <Zap size={20} className="text-primary" />
                     Learning Focus
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-2 pt-0 text-center">
                   <p className="text-xl font-medium text-accent">Jetpack Compose</p> 
-                  <p className="text-base text-muted-foreground">& Automation</p>
+                  <p className="text-sm text-muted-foreground">& Automation</p>
                 </CardContent>
               </Card>
               <Card className="shadow-md bg-card">
                 <CardHeader className="p-2 pb-1">
                    <CardTitle className="text-lg font-semibold text-center flex flex-col items-center gap-1">
-                    <Users size={22} className="text-primary" />
+                    <Users size={20} className="text-primary" />
                      SAP Experience
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-2 pt-0 text-center">
-                  <p className="text-3xl font-bold text-accent">8</p>
-                  <p className="text-base text-muted-foreground">Months</p>
+                  <p className="text-2xl font-bold text-accent">8</p>
+                  <p className="text-sm text-muted-foreground">Months</p>
                 </CardContent>
               </Card>
               <Card className="shadow-md bg-card">
                 <CardHeader className="p-2 pb-1">
                   <CardTitle className="text-lg font-semibold text-center flex flex-col items-center gap-1">
-                    <Code size={22} className="text-primary" />
+                    <Code size={20} className="text-primary" />
                     Automation
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-2 pt-0 text-center">
                   <p className="text-xl font-medium text-accent">Python Tools</p>
-                  <p className="text-base text-muted-foreground">Scripting</p>
+                  <p className="text-sm text-muted-foreground">Scripting</p>
                 </CardContent>
               </Card>
             </div>
           </CardContent>
         </Card>
         
-        <Card className="shadow-lg mb-2.5">
+        <Card className="shadow-lg">
           <CardHeader className="p-2">
             <CardTitle className="text-2xl font-semibold text-primary text-center">Get in Touch</CardTitle>
           </CardHeader>
@@ -135,7 +135,7 @@ const HomePageContent: React.FC = () => {
                 <CardContent className="p-2">
                   <a href="mailto:SumantKushwaha.dev@gmail.com" className="flex items-center transition-colors w-full">
                     <Mail size={18} className="text-accent mr-2.5 flex-shrink-0" /> 
-                    <span className="text-base text-foreground">SumantKushwaha.dev@gmail.com</span>
+                    <span className="text-sm text-foreground">SumantKushwaha.dev@gmail.com</span>
                   </a>
                 </CardContent>
               </Card>
@@ -143,7 +143,7 @@ const HomePageContent: React.FC = () => {
                 <CardContent className="p-2">
                   <a href="tel:+919939824083" className="flex items-center transition-colors w-full">
                     <Phone size={18} className="text-accent mr-2.5 flex-shrink-0" />
-                    <span className="text-base text-foreground">+91 9939824083</span>
+                    <span className="text-sm text-foreground">+91 9939824083</span>
                   </a>
                 </CardContent>
               </Card>
@@ -156,5 +156,3 @@ const HomePageContent: React.FC = () => {
 };
 
 export default HomePageContent;
-
-    
