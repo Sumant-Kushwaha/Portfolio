@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi, User, MessageCircleMore } from 'lucide-react';
+import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi, User } from 'lucide-react';
 import ClientOnlyTime from '@/components/client-only-time';
 import ThemeToggleButton from '@/components/theme-toggle-button';
 import { Button } from '@/components/ui/button';
@@ -29,15 +29,15 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
     } else {
       if (typeof window !== 'undefined') {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        setMobileTheme(prefersDark ? 'dark' : 'light');
-         // If an invalid value was in localStorage, or nothing was there, set the determined theme.
-        localStorage.setItem('mobileTheme', prefersDark ? 'dark' : 'light');
+        const initialTheme = prefersDark ? 'dark' : 'light';
+        setMobileTheme(initialTheme);
+        localStorage.setItem('mobileTheme', initialTheme); // Save initial theme if not stored
       }
     }
   }, []);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') { 
+    if (typeof window !== 'undefined' && mobileTheme) { 
         localStorage.setItem('mobileTheme', mobileTheme);
     }
   }, [mobileTheme]);
@@ -101,8 +101,10 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
 
 
           {/* App Content Area */}
-          <div className={cn(
-            "flex-grow p-2.5 pt-2.5 overflow-y-auto overflow-x-hidden pb-[calc(4rem+0.625rem)] no-scrollbar"
+          <div
+            key={activeTab} 
+            className={cn(
+            "flex-grow p-2.5 pt-2.5 overflow-y-auto overflow-x-hidden pb-[calc(4rem+0.625rem)] no-scrollbar animate-fadeIn"
           )}>
             {renderContent()}
           </div>
