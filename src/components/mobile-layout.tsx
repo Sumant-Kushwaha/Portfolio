@@ -45,8 +45,8 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
       {/* Phone Bezel */}
       <div className="relative w-full max-w-[410px] aspect-[410/844] h-auto max-h-full bg-neutral-800 dark:bg-neutral-900 rounded-[60px] shadow-2xl p-3 border-4 border-neutral-700 dark:border-neutral-800">
         {/* Notch physical overlay */}
-        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[130px] h-7 bg-neutral-800 dark:bg-neutral-900 rounded-full z-20">
-          <div className="w-12 h-1.5 bg-neutral-600 dark:bg-neutral-700 rounded-full mx-auto mt-2.5"></div>
+        <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[100px] h-6 bg-neutral-800 dark:bg-neutral-900 rounded-full z-20">
+          <div className="w-10 h-1 bg-neutral-600 dark:bg-neutral-700 rounded-full mx-auto mt-2"></div>
         </div>
 
         {/* Inner Screen */}
@@ -63,7 +63,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               <ClientOnlyTime />
             </div>
             {/* Notch Spacer for layout */}
-            <div className="w-[130px] shrink-0"></div>
+            <div className="w-[100px] shrink-0"></div>
             {/* Right "Ear" - Icons */}
             <div className="flex-1 flex justify-center items-center">
               <div className="flex items-center space-x-1 p-1.5 rounded-full bg-muted/30">
