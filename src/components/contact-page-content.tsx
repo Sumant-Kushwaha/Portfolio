@@ -4,7 +4,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Mail, Phone, Send, User as UserIcon, MessageSquare } from "lucide-react"; // Added UserIcon and MessageSquare for form
+import { Mail, Phone, Send, User as UserIcon, MessageSquare } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -72,21 +72,30 @@ const ContactPageContent: React.FC = () => {
             You can reach me directly via email or phone.
           </CardDescription>
         </CardHeader>
-        <CardContent className="p-3 pt-1 text-sm">
-          <a
-            href="mailto:SumantKushwaha.dev@gmail.com"
-            className="flex items-center p-2 rounded-lg hover:bg-accent/10 transition-colors mb-1"
-          >
-            <Mail size={16} className="text-accent mr-2 flex-shrink-0" />
-            <span className="text-xs text-foreground">SumantKushwaha.dev@gmail.com</span>
-          </a>
-          <a
-            href="tel:+919939824083"
-            className="flex items-center p-2 rounded-lg hover:bg-accent/10 transition-colors"
-          >
-            <Phone size={16} className="text-accent mr-2 flex-shrink-0" />
-            <span className="text-xs text-foreground">+91 9939824083</span>
-          </a>
+        <CardContent className="p-3 pt-1 text-sm space-y-2">
+          <Card className="p-0 shadow-sm hover:shadow-md transition-shadow bg-card">
+            <CardContent className="p-2">
+              <a
+                href="mailto:SumantKushwaha.dev@gmail.com"
+                className="flex items-center transition-colors w-full"
+              >
+                <Mail size={16} className="text-accent mr-2 flex-shrink-0" />
+                <span className="text-xs text-foreground">SumantKushwaha.dev@gmail.com</span>
+              </a>
+            </CardContent>
+          </Card>
+
+          <Card className="p-0 shadow-sm hover:shadow-md transition-shadow bg-card">
+            <CardContent className="p-2">
+              <a
+                href="tel:+919939824083"
+                className="flex items-center transition-colors w-full"
+              >
+                <Phone size={16} className="text-accent mr-2 flex-shrink-0" />
+                <span className="text-xs text-foreground">+91 9939824083</span>
+              </a>
+            </CardContent>
+          </Card>
         </CardContent>
       </Card>
 
