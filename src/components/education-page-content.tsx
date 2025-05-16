@@ -10,7 +10,7 @@ const EducationPageContent: React.FC = () => {
     <div className="flex flex-col space-y-2.5">
       <Card className="shadow-lg">
         <CardHeader className="p-3 flex flex-col items-center justify-center">
-          <GraduationCap size={40} className="mb-2 text-primary" />
+          <GraduationCap size={80} className="mb-2 text-primary" />
           <CardTitle className="text-3xl font-semibold text-primary text-center">
             My Education
           </CardTitle>
