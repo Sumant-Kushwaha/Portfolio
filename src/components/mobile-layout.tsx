@@ -27,12 +27,16 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
     if (storedMobileTheme) {
       setMobileTheme(storedMobileTheme);
     } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setMobileTheme(prefersDark ? 'dark' : 'light');
+      // Ensure window is defined (runs only on client)
+      if (typeof window !== 'undefined') {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setMobileTheme(prefersDark ? 'dark' : 'light');
+      }
     }
   }, []);
 
   useEffect(() => {
+    // Ensure window is defined (runs only on client)
     if (typeof window !== 'undefined') { 
         localStorage.setItem('mobileTheme', mobileTheme);
     }
@@ -82,10 +86,10 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             <div className="w-[100px] shrink-0"></div>
             {/* Right "Ear" - Icons */}
             <div className="flex-1 flex justify-center items-center">
-              <div className="flex items-center space-x-2"> {/* Adjusted spacing */}
+              <div className="flex items-center space-x-2">
                 <Wifi size={16} aria-label="WiFi status" className="text-foreground" />
                 <BatteryFull size={16} aria-label="Battery full" className="text-foreground" />
-                <div className="p-1 rounded-full bg-muted/30"> {/* Chip for ThemeToggle */}
+                <div className="p-1 rounded-full bg-muted/30">
                   <ThemeToggleButton
                     currentTheme={mobileTheme}
                     setTheme={setMobileTheme}
@@ -110,7 +114,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             <Button
               variant="ghost"
               size="icon"
-              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
+              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent"
               data-active={activeTab === 'Home'}
               onClick={() => setActiveTab('Home')}
             >
@@ -120,7 +124,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             <Button
               variant="ghost"
               size="icon"
-              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
+              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent"
               data-active={activeTab === 'Projects'}
               onClick={() => setActiveTab('Projects')}
             >
@@ -130,7 +134,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             <Button
               variant="ghost"
               size="icon"
-              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
+              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent"
               data-active={activeTab === 'Education'}
               onClick={() => setActiveTab('Education')}
             >
@@ -140,7 +144,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             <Button
               variant="ghost"
               size="icon"
-              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
+              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent"
               data-active={activeTab === 'Experience'}
               onClick={() => setActiveTab('Experience')}
             >
@@ -150,7 +154,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             <Button
               variant="ghost"
               size="icon"
-              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
+              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent"
               data-active={activeTab === 'Contact'}
               onClick={() => setActiveTab('Contact')}
             >
