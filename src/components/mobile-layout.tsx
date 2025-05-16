@@ -14,6 +14,28 @@ interface MobileLayoutProps {
 
 const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
   const [mobileTheme, setMobileTheme] = useState<'light' | 'dark'>('light');
+  // For now, activeTab can be hardcoded or managed with a simple state if routing isn't set up.
+  // Let's assume 'Home' is active for this step.
+  const [activeTab, setActiveTab] = useState('Home');
+
+
+  // Placeholder for default content if no children are passed
+  const defaultContent = (
+    <>
+      <h1 className="text-2xl font-semibold text-primary mt-4">Sumant's Portfolio App</h1>
+      <p className="text-muted-foreground mt-2">
+        Content will be displayed here. Navigate through sections like a mobile app.
+      </p>
+      <div className="mt-8 space-y-4">
+        {[1,2,3].map(i => (
+          <div key={i} className="bg-card p-4 rounded-lg shadow">
+            <h2 className="text-lg font-medium text-card-foreground">Section {i}</h2>
+            <p className="text-sm text-muted-foreground mt-1">This is a placeholder for future content.</p>
+          </div>
+        ))}
+      </div>
+    </>
+  );
 
   return (
     <main className="flex justify-center items-center selection:bg-accent selection:text-accent-foreground">
@@ -39,53 +61,68 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
                 currentTheme={mobileTheme} 
                 setTheme={setMobileTheme}
                 iconSize={14} 
-                className="w-6 h-6" 
+                className="w-6 h-6 text-foreground" // Ensure icon color contrasts with chip
               />
-              <Signal size={14} aria-label="Signal strength" />
-              <Wifi size={14} aria-label="Wifi connection" />
-              <BatteryFull size={16} aria-label="Battery full" />
+              <Signal size={14} aria-label="Signal strength" className="text-foreground" />
+              <Wifi size={14} aria-label="Wifi connection" className="text-foreground" />
+              <BatteryFull size={16} aria-label="Battery full" className="text-foreground" />
             </div>
           </div>
 
           {/* App Content Area */}
           <div className="flex-grow p-4 pt-2 overflow-y-auto pb-16"> {/* Added pb-16 for bottom nav clearance */}
-            {children ? children : (
-              <>
-                <h1 className="text-2xl font-semibold text-primary mt-4">Sumant's Portfolio App</h1>
-                <p className="text-muted-foreground mt-2">
-                  Content will be displayed here. Navigate through sections like a mobile app.
-                </p>
-                <div className="mt-8 space-y-4">
-                  {[1,2,3].map(i => (
-                    <div key={i} className="bg-card p-4 rounded-lg shadow">
-                      <h2 className="text-lg font-medium text-card-foreground">Section {i}</h2>
-                      <p className="text-sm text-muted-foreground mt-1">This is a placeholder for future content.</p>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
+            {children ? children : defaultContent}
           </div>
 
           {/* Bottom Navigation Bar - Made transparent */}
           <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-t-md">
-            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
+              data-active={activeTab === 'Home'}
+              onClick={() => setActiveTab('Home')}
+            >
               <Home size={20} />
               <span className="text-[10px] mt-0.5">Home</span>
             </Button>
-            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
+              data-active={activeTab === 'Education'}
+              onClick={() => setActiveTab('Education')}
+            >
               <GraduationCap size={20} />
               <span className="text-[10px] mt-0.5">Education</span>
             </Button>
-            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
+              data-active={activeTab === 'Projects'}
+              onClick={() => setActiveTab('Projects')}
+            >
               <Briefcase size={20} />
               <span className="text-[10px] mt-0.5">Projects</span>
             </Button>
-            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
+              data-active={activeTab === 'Experience'}
+              onClick={() => setActiveTab('Experience')}
+            >
               <Award size={20} />
               <span className="text-[10px] mt-0.5">Experience</span>
             </Button>
-            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
+              data-active={activeTab === 'Contact'}
+              onClick={() => setActiveTab('Contact')}
+            >
               <Mail size={20} />
               <span className="text-[10px] mt-0.5">Contact</span>
             </Button>

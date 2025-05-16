@@ -1,9 +1,11 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
 import SplashScreen from '@/components/splash-screen';
 import MobileLayout from '@/components/mobile-layout';
 import ThemeToggleButton from '@/components/theme-toggle-button';
+import HomePageContent from '@/components/home-page-content'; // Import the new component
 import { Toaster } from "@/components/ui/toaster";
 
 export default function Home() {
@@ -28,7 +30,9 @@ export default function Home() {
 
   const mainContent = (
     <div className="flex justify-center items-center flex-grow p-4">
-      <MobileLayout />
+      <MobileLayout>
+        <HomePageContent /> 
+      </MobileLayout>
     </div>
   );
 
