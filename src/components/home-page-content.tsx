@@ -37,12 +37,12 @@ const HomePageContent: React.FC = () => {
           <div className="flex flex-col items-center text-center">
             <Avatar className="w-28 h-28 mb-2 border-2 border-primary">
               <AvatarImage src="https://placehold.co/100x100.png" alt="Sumant Mourya" data-ai-hint="profile avatar" />
-              <AvatarFallback>SM</AvatarFallback>
+              <AvatarFallback className="text-3xl">SM</AvatarFallback>
             </Avatar>
             <h1 className="text-3xl font-bold text-foreground mb-1">
               Hi! I'm Sumant Mourya 👋
             </h1>
-            <div className="flex items-center justify-center text-xl text-accent font-semibold mb-2 h-7">
+            <div className="flex items-center justify-center text-xl text-accent font-semibold mb-2 h-8">
               {currentSkillIndex === 0 && <Code size={22} className="mr-2" />}
               {currentSkillIndex === 1 && <Palette size={22} className="mr-2" />}
               <span>{skills[currentSkillIndex]}</span>
@@ -100,7 +100,7 @@ const HomePageContent: React.FC = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-1.5 pt-0 text-center">
-                  <p className="text-sm font-medium text-accent">Jetpack Compose</p> 
+                  <p className="text-base font-medium text-accent">Jetpack Compose</p> 
                   <p className="text-sm text-muted-foreground">& Automation</p>
                 </CardContent>
               </Card>
@@ -124,7 +124,7 @@ const HomePageContent: React.FC = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-1.5 pt-0 text-center">
-                  <p className="text-sm font-medium text-accent">Python Tools</p>
+                  <p className="text-base font-medium text-accent">Python Tools</p>
                   <p className="text-sm text-muted-foreground">Scripting</p>
                 </CardContent>
               </Card>
@@ -134,7 +134,7 @@ const HomePageContent: React.FC = () => {
         
         <Card className="shadow-lg mb-2.5">
           <CardHeader className="p-3">
-            <CardTitle className="text-xl font-semibold text-primary text-center">Get in Touch</CardTitle>
+            <CardTitle className="text-2xl font-semibold text-primary text-center">Get in Touch</CardTitle>
           </CardHeader>
           <CardContent className="p-3 pt-0">
             <div className="space-y-1.5"> 

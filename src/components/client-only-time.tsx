@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -21,10 +22,10 @@ const ClientOnlyTime: React.FC = () => {
 
   if (!time) {
     // Render nothing or a placeholder until time is set to avoid mismatch
-    return <span className="w-12"></span>; // Placeholder width to prevent layout shift
+    return <span className="w-14"></span>; // Placeholder width to prevent layout shift
   }
 
-  return <span>{time}</span>;
+  return <span className="text-base">{time}</span>;
 };
 
 export default ClientOnlyTime;
