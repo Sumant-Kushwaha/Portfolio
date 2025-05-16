@@ -19,11 +19,10 @@ interface MobileLayoutProps {
 }
 
 const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
-  const [mobileTheme, setMobileTheme] = useState<'light' | 'dark'>('light'); // Default for SSR
+  const [mobileTheme, setMobileTheme] = useState<'light' | 'dark'>('light'); 
   const [activeTab, setActiveTab] = useState('Home');
 
   useEffect(() => {
-    // Load stored theme or detect system preference for mobile theme
     const storedMobileTheme = localStorage.getItem('mobileTheme') as 'light' | 'dark' | null;
     if (storedMobileTheme) {
       setMobileTheme(storedMobileTheme);
@@ -31,11 +30,10 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setMobileTheme(prefersDark ? 'dark' : 'light');
     }
-  }, []); // Empty dependency array: runs once on mount
+  }, []);
 
   useEffect(() => {
-    // Save mobileTheme to localStorage whenever it changes
-    if (typeof window !== 'undefined') { // Ensure localStorage is available
+    if (typeof window !== 'undefined') {
         localStorage.setItem('mobileTheme', mobileTheme);
     }
   }, [mobileTheme]);
@@ -100,13 +98,13 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
 
           {/* App Content Area */}
           <div className={cn(
-            "flex-grow p-2.5 pt-2.5 overflow-y-auto overflow-x-hidden pb-[calc(5rem+0.625rem)] no-scrollbar"
+            "flex-grow p-2.5 pt-2.5 overflow-y-auto overflow-x-hidden pb-[calc(4rem+0.625rem)] no-scrollbar"
           )}>
             {renderContent()}
           </div>
 
           {/* Bottom Navigation Bar - Translucent */}
-          <div className="h-20 flex items-center justify-around p-1 shrink-0 shadow-t-md bg-background/70 backdrop-blur-sm">
+          <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-t-md bg-background/70 backdrop-blur-sm">
             <Button
               variant="ghost"
               size="icon"
@@ -115,7 +113,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Home')}
             >
               <Home size={24} />
-              <span className="text-base mt-0.5">Home</span>
+              <span className="text-sm mt-0.5">Home</span>
             </Button>
             <Button
               variant="ghost"
@@ -125,7 +123,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Projects')}
             >
               <Briefcase size={24} />
-              <span className="text-base mt-0.5">Projects</span>
+              <span className="text-sm mt-0.5">Projects</span>
             </Button>
             <Button
               variant="ghost"
@@ -135,7 +133,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Education')}
             >
               <GraduationCap size={24} />
-              <span className="text-base mt-0.5">Education</span>
+              <span className="text-sm mt-0.5">Education</span>
             </Button>
             <Button
               variant="ghost"
@@ -145,7 +143,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Experience')}
             >
               <Award size={24} />
-              <span className="text-base mt-0.5">Experience</span>
+              <span className="text-sm mt-0.5">Experience</span>
             </Button>
             <Button
               variant="ghost"
@@ -155,7 +153,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Contact')}
             >
               <Mail size={24} />
-              <span className="text-base mt-0.5">Contact</span>
+              <span className="text-sm mt-0.5">Contact</span>
             </Button>
           </div>
         </div>
