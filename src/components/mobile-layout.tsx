@@ -50,19 +50,30 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             mobileTheme === 'dark' ? 'theme-mobile-dark' : ''
           )}
         >
-          {/* Status Bar - Made transparent & height matching notch */}
-          <div className="h-7 px-4 flex items-center justify-between text-sm font-medium text-foreground/80 z-10 shrink-0">
-            <ClientOnlyTime />
-            <div className="flex items-center space-x-1.5 p-1 rounded-full bg-muted/50">
-              <ThemeToggleButton
-                currentTheme={mobileTheme}
-                setTheme={setMobileTheme}
-                iconSize={14}
-                className="w-6 h-6 text-foreground"
-              />
-              <BatteryFull size={16} aria-label="Battery full" className="text-foreground" />
+          {/* Status Bar - Height matching notch */}
+          {/* This div reserves space for the notch overlay, content appears below it */}
+          {/* <div className="h-7 shrink-0"></div> */}
+          
+          <div className="h-7 flex items-center justify-between text-sm font-medium text-foreground/80 z-10 shrink-0 mt-[5px] px-1">
+            <div className="flex-1 flex justify-center items-center">
+              <div className="bg-muted/50 p-1 rounded-full flex items-center">
+                <ClientOnlyTime />
+              </div>
+            </div>
+            <div className="w-[130px] shrink-0"> {/* Notch Spacer */} </div>
+            <div className="flex-1 flex justify-center items-center">
+              <div className="flex items-center space-x-1.5 p-1 rounded-full bg-muted/50">
+                <ThemeToggleButton
+                  currentTheme={mobileTheme}
+                  setTheme={setMobileTheme}
+                  iconSize={14}
+                  className="w-6 h-6 text-foreground"
+                />
+                <BatteryFull size={16} aria-label="Battery full" className="text-foreground" />
+              </div>
             </div>
           </div>
+
 
           {/* App Content Area */}
           <div className={cn(
@@ -71,7 +82,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             {children ? children : defaultContent}
           </div>
 
-          {/* Bottom Navigation Bar - Made transparent */}
+          {/* Bottom Navigation Bar - Transparent */}
           <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-t-md">
             <Button
               variant="ghost"
