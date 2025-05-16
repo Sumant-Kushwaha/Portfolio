@@ -69,23 +69,23 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
 
           {/* Bottom Navigation Bar - Made transparent */}
           <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-t-md">
-            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
+            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary">
               <Home size={20} />
               <span className="text-[10px] mt-0.5">Home</span>
             </Button>
-            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
+            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary">
               <GraduationCap size={20} />
               <span className="text-[10px] mt-0.5">Education</span>
             </Button>
-            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
+            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary">
               <Briefcase size={20} />
               <span className="text-[10px] mt-0.5">Projects</span>
             </Button>
-            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
+            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary">
               <Award size={20} />
               <span className="text-[10px] mt-0.5">Experience</span>
             </Button>
-            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
+            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary">
               <Mail size={20} />
               <span className="text-[10px] mt-0.5">Contact</span>
             </Button>
