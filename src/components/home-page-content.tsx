@@ -17,16 +17,50 @@ const iconMap: { [key: string]: LucideIcon } = {
   Code: CodeIcon,
 };
 
+const TYPING_SPEED = 150;
+const DELETING_SPEED = 75;
+const PAUSE_DURATION_AFTER_TYPING = 2000;
+const PAUSE_DURATION_AFTER_DELETING = 500;
+
 const HomePageContent: React.FC = () => {
-  const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
+  const [skillIndex, setSkillIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [displayedText, setDisplayedText] = useState('');
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentSkillIndex((prevIndex) => (prevIndex + 1) % homePageContent.dynamicSkills.length);
-    }, 3000); 
+    const currentSkill = homePageContent.dynamicSkills[skillIndex];
+    let timeoutId: NodeJS.Timeout;
 
-    return () => clearInterval(intervalId);
-  }, []);
+    if (!isDeleting) { // Typing
+      if (charIndex < currentSkill.length) {
+        timeoutId = setTimeout(() => {
+          setDisplayedText((prev) => currentSkill.substring(0, charIndex + 1));
+          setCharIndex((prev) => prev + 1);
+        }, TYPING_SPEED);
+      } else { // Finished typing current word
+        timeoutId = setTimeout(() => {
+          setIsDeleting(true);
+        }, PAUSE_DURATION_AFTER_TYPING);
+      }
+    } else { // Deleting
+      if (charIndex > 0) {
+        timeoutId = setTimeout(() => {
+          setDisplayedText((prev) => currentSkill.substring(0, charIndex - 1));
+          setCharIndex((prev) => prev - 1);
+        }, DELETING_SPEED);
+      } else { // Finished deleting current word
+        timeoutId = setTimeout(() => {
+          setIsDeleting(false);
+          setSkillIndex((prev) => (prev + 1) % homePageContent.dynamicSkills.length);
+          // charIndex is already 0, setDisplayedText will be empty or start fresh
+        }, PAUSE_DURATION_AFTER_DELETING);
+      }
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [charIndex, isDeleting, skillIndex, homePageContent.dynamicSkills]);
+
 
   return (
     <div className="flex flex-col text-foreground space-y-2.5">
@@ -34,14 +68,15 @@ const HomePageContent: React.FC = () => {
         <CardContent className="p-3">
           <div className="flex flex-col items-center text-center">
             <Avatar className="w-20 h-20 mb-2 border-2 border-primary">
-              <AvatarImage src="https://placehold.co/128x128.png" alt="Sumant Mourya" data-ai-hint="profile avatar" />
-              <AvatarFallback className="text-2xl">SM</AvatarFallback>
+              <AvatarImage src="https://placehold.co/128x128.png" alt={homePageContent.avatarAltText} data-ai-hint="profile avatar" />
+              <AvatarFallback className="text-2xl">{homePageContent.avatarFallback}</AvatarFallback>
             </Avatar>
             <h1 className="text-3xl font-bold text-foreground mb-1">
               {homePageContent.greeting}
             </h1>
-            <div className="flex items-center justify-center text-accent font-semibold mb-2 h-12 text-3xl">
-              <span>{homePageContent.dynamicSkills[currentSkillIndex]}</span>
+            <div className="flex items-center justify-center text-accent font-semibold mb-2 h-9 text-xl">
+              <span>{displayedText}</span>
+              <span className="animate-blink ml-0.5">|</span>
             </div>
             <p className="text-base text-muted-foreground mb-3 max-w-md">
               {homePageContent.introParagraph}
@@ -50,8 +85,7 @@ const HomePageContent: React.FC = () => {
         </CardContent>
       </Card>
 
-      <div className="flex-grow space-y-2.5">
-        <Card className="shadow-lg">
+      <Card className="shadow-lg">
           <CardHeader className="p-2">
             <CardTitle className="text-2xl font-semibold text-primary text-center">{homePageContent.highlightsTitle}</CardTitle>
           </CardHeader>
@@ -103,7 +137,7 @@ const HomePageContent: React.FC = () => {
                 <CardContent className="p-2">
                   <a href={`mailto:${homePageContent.email}`} className="flex items-center transition-colors w-full">
                     <Mail size={18} className="text-accent mr-2.5 flex-shrink-0" /> 
-                    <span className="text-sm text-foreground">{homePageContent.email}</span>
+                    <span className="text-base text-foreground">{homePageContent.email}</span>
                   </a>
                 </CardContent>
               </Card>
@@ -111,14 +145,13 @@ const HomePageContent: React.FC = () => {
                 <CardContent className="p-2">
                   <a href={`tel:${homePageContent.phone}`} className="flex items-center transition-colors w-full">
                     <Phone size={18} className="text-accent mr-2.5 flex-shrink-0" />
-                    <span className="text-sm text-foreground">{homePageContent.phone}</span>
+                    <span className="text-base text-foreground">{homePageContent.phone}</span>
                   </a>
                 </CardContent>
               </Card>
             </div>
           </CardContent>
         </Card>
-      </div>
     </div>
   );
 };
