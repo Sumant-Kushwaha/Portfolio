@@ -57,7 +57,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           )}
         >
           {/* Status Bar Area */}
-          <div className="h-7 flex items-center justify-between text-foreground z-10 shrink-0 px-1.5">
+          <div className="h-7 flex items-center justify-between text-foreground z-10 shrink-0 px-5">
             {/* Left "Ear" - Clock */}
             <div className="flex-1 flex justify-center items-center">
               <ClientOnlyTime />
