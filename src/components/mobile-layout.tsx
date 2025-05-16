@@ -33,7 +33,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') { // Ensure localStorage is available
         localStorage.setItem('mobileTheme', mobileTheme);
     }
   }, [mobileTheme]);
@@ -86,11 +86,11 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
                 <ThemeToggleButton
                   currentTheme={mobileTheme}
                   setTheme={setMobileTheme}
-                  iconSize={12}
+                  iconSize={16}
                   className="w-6 h-6 text-foreground"
                 />
-                <Wifi size={12} aria-label="WiFi status" className="text-foreground" />
-                <BatteryFull size={12} aria-label="Battery full" className="text-foreground" />
+                <Wifi size={16} aria-label="WiFi status" className="text-foreground" />
+                <BatteryFull size={16} aria-label="Battery full" className="text-foreground" />
               </div>
             </div>
           </div>
