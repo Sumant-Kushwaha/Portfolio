@@ -8,12 +8,6 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Phone, Briefcase, Zap, Code, Users, Palette } from 'lucide-react'; 
 
-// This 'skills' array will no longer be used for the looping text.
-// const skills = [
-//   "Kotlin Android App Developer",
-//   "UI/UX Enthusiast"
-// ];
-
 const techStack = [
   "Kotlin", "Jetpack Compose", "Android Studio", "Firebase", "REST APIs",
   "Python Automation", "Git & GitHub", "C", "C++", "Linux", "MySQL", "Oracle SQL", "RoomDB"
@@ -24,12 +18,11 @@ const HomePageContent: React.FC = () => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      // Loop through the techStack array
       setCurrentSkillIndex((prevIndex) => (prevIndex + 1) % techStack.length);
     }, 3000); 
 
     return () => clearInterval(intervalId);
-  }, []); // techStack is stable, so no need to add it to dependencies
+  }, []);
 
   return (
     <div className="flex flex-col text-foreground space-y-2.5">
@@ -45,7 +38,7 @@ const HomePageContent: React.FC = () => {
               Hi! I'm Sumant Mourya 👋
             </h1>
             {/* Looping text will now show skills from techStack */}
-            <div className="flex items-center justify-center text-4xl text-accent font-semibold mb-3 h-12">
+            <div className="flex items-center justify-center text-xl text-accent font-semibold mb-3 h-10">
               {/* Icons specific to old skills removed */}
               <span>{techStack[currentSkillIndex]}</span>
             </div>
