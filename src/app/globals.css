@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -159,6 +160,7 @@
   body {
     /* Basic body styles, background/color handled by .outside-theme-wrapper */
     overflow-x: hidden; /* Prevent horizontal scroll on the body */
+    overflow-y: hidden; /* Prevent vertical scroll on the body */
   }
   .mobile-theme-container {
      @apply bg-background text-foreground; /* Uses its own scoped --background and --foreground */
@@ -183,3 +185,4 @@
 .animate-fadeOut {
   animation: fadeOut 0.5s ease-in-out forwards;
 }
+
