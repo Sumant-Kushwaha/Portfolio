@@ -64,9 +64,9 @@ const ContactPageContent: React.FC = () => {
   return (
     <div className="flex flex-col space-y-2.5">
       <Card className="shadow-lg">
-        <CardHeader className="p-3 pb-1">
-          <CardTitle className="text-xl font-bold text-foreground text-center flex items-center justify-center">
-            <Info size={20} className="mr-2 text-accent" />
+        <CardHeader className="p-3">
+          <CardTitle className="text-xl font-bold text-foreground text-center flex flex-col items-center justify-center">
+            <Info size={48} className="mb-2 text-accent" />
             Contact Information
           </CardTitle>
           <CardDescription className="text-base text-muted-foreground pt-0.5 text-center">
@@ -101,9 +101,9 @@ const ContactPageContent: React.FC = () => {
       </Card>
 
       <Card className="shadow-lg">
-        <CardHeader className="p-3 pb-1">
-          <CardTitle className="text-xl font-bold text-foreground text-center flex items-center justify-center">
-            <MessageCircleMore size={20} className="mr-2 text-accent" />
+        <CardHeader className="p-3">
+          <CardTitle className="text-xl font-bold text-foreground text-center flex flex-col items-center justify-center">
+            <MessageCircleMore size={48} className="mb-2 text-accent" />
             Send a Message
           </CardTitle>
           <CardDescription className="text-base text-muted-foreground pt-0.5 text-center">
@@ -123,7 +123,7 @@ const ContactPageContent: React.FC = () => {
                       Full Name
                     </FormLabel>
                     <FormControl>
-                      <Input placeholder="Your Full Name" {...field} className="text-sm p-2 h-9" />
+                      <Input placeholder="Your Full Name" {...field} className="text-base p-2 h-9" />
                     </FormControl>
                     <FormMessage className="text-sm" />
                   </FormItem>
@@ -139,7 +139,7 @@ const ContactPageContent: React.FC = () => {
                       Email Address
                     </FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="your.email@example.com" {...field} className="text-sm p-2 h-9" />
+                      <Input type="email" placeholder="your.email@example.com" {...field} className="text-base p-2 h-9" />
                     </FormControl>
                     <FormMessage className="text-sm" />
                   </FormItem>
@@ -158,7 +158,7 @@ const ContactPageContent: React.FC = () => {
                       <Textarea
                         placeholder="Your message..."
                         {...field}
-                        className="text-sm p-2 min-h-[80px]"
+                        className="text-base p-2 min-h-[80px]"
                       />
                     </FormControl>
                     <FormMessage className="text-sm" />
