@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 interface MobileLayoutProps {
-  children?: React.ReactNode; 
+  children?: React.ReactNode;
 }
 
 const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
@@ -44,21 +44,21 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
         </div>
 
         {/* Inner Screen */}
-        <div 
+        <div
           className={cn(
             "w-full h-full rounded-[48px] overflow-hidden shadow-inner flex flex-col mobile-theme-container",
             mobileTheme === 'dark' ? 'theme-mobile-dark' : ''
           )}
         >
-          {/* Status Bar - Made transparent */}
-          <div className="h-12 px-2 sm:px-3 flex items-center justify-between text-sm font-medium text-foreground/80 pt-5 z-10 shrink-0">
+          {/* Status Bar - Made transparent & height matching notch */}
+          <div className="h-7 px-4 flex items-center justify-between text-sm font-medium text-foreground/80 z-10 shrink-0">
             <ClientOnlyTime />
             <div className="flex items-center space-x-1.5 p-1 rounded-full bg-muted/50">
-              <ThemeToggleButton 
-                currentTheme={mobileTheme} 
+              <ThemeToggleButton
+                currentTheme={mobileTheme}
                 setTheme={setMobileTheme}
-                iconSize={14} 
-                className="w-6 h-6 text-foreground" 
+                iconSize={14}
+                className="w-6 h-6 text-foreground"
               />
               <BatteryFull size={16} aria-label="Battery full" className="text-foreground" />
             </div>
@@ -73,9 +73,9 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
 
           {/* Bottom Navigation Bar - Made transparent */}
           <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-t-md">
-            <Button 
-              variant="ghost" 
-              size="icon" 
+            <Button
+              variant="ghost"
+              size="icon"
               className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
               data-active={activeTab === 'Home'}
               onClick={() => setActiveTab('Home')}
@@ -83,9 +83,9 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               <Home size={20} />
               <span className="text-[10px] mt-0.5">Home</span>
             </Button>
-            <Button 
-              variant="ghost" 
-              size="icon" 
+            <Button
+              variant="ghost"
+              size="icon"
               className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
               data-active={activeTab === 'Education'}
               onClick={() => setActiveTab('Education')}
@@ -93,9 +93,9 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               <GraduationCap size={20} />
               <span className="text-[10px] mt-0.5">Education</span>
             </Button>
-            <Button 
-              variant="ghost" 
-              size="icon" 
+            <Button
+              variant="ghost"
+              size="icon"
               className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
               data-active={activeTab === 'Projects'}
               onClick={() => setActiveTab('Projects')}
@@ -103,9 +103,9 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               <Briefcase size={20} />
               <span className="text-[10px] mt-0.5">Projects</span>
             </Button>
-            <Button 
-              variant="ghost" 
-              size="icon" 
+            <Button
+              variant="ghost"
+              size="icon"
               className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
               data-active={activeTab === 'Experience'}
               onClick={() => setActiveTab('Experience')}
@@ -113,9 +113,9 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               <Award size={20} />
               <span className="text-[10px] mt-0.5">Experience</span>
             </Button>
-            <Button 
-              variant="ghost" 
-              size="icon" 
+            <Button
+              variant="ghost"
+              size="icon"
               className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
               data-active={activeTab === 'Contact'}
               onClick={() => setActiveTab('Contact')}
