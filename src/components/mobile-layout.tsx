@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi, User } from 'lucide-react';
+import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi, User, MessageCircleMore } from 'lucide-react';
 import ClientOnlyTime from '@/components/client-only-time';
 import ThemeToggleButton from '@/components/theme-toggle-button';
 import { Button } from '@/components/ui/button';
@@ -59,7 +59,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           )}
         >
           {/* Status Bar Area */}
-          <div className="h-7 flex items-center justify-between text-foreground z-10 shrink-0 mt-[5px] px-1">
+          <div className="h-7 flex items-center justify-between text-foreground z-10 shrink-0 px-1.5"> {/* Updated px-1 to px-1.5 */}
             {/* Left "Ear" - Clock */}
             <div className="flex-1 flex justify-center items-center">
               <div className="bg-muted/30 p-1.5 rounded-full flex items-center">
@@ -70,7 +70,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             <div className="w-[130px] shrink-0"></div>
             {/* Right "Ear" - Icons */}
             <div className="flex-1 flex justify-center items-center">
-              <div className="flex items-center space-x-1.5 p-1.5 rounded-full bg-muted/30">
+              <div className="flex items-center space-x-1 p-1.5 rounded-full bg-muted/30">
                 <ThemeToggleButton
                   currentTheme={mobileTheme}
                   setTheme={setMobileTheme}
