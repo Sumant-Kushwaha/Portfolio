@@ -1,9 +1,12 @@
+
 "use client";
 
 import React, { useState } from 'react';
-import { Wifi, BatteryFull, Signal } from 'lucide-react';
+import { Wifi, BatteryFull, Signal, Home, UserCircle, Settings as SettingsIcon } from 'lucide-react'; // Added Home, UserCircle, SettingsIcon
 import ClientOnlyTime from '@/components/client-only-time';
 import ThemeToggleButton from '@/components/theme-toggle-button';
+import { Button } from '@/components/ui/button'; // Added Button import
+import { cn } from '@/lib/utils';
 
 interface MobileLayoutProps {
   children?: React.ReactNode; 
@@ -14,7 +17,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
 
   return (
     <main className="flex justify-center items-center selection:bg-accent selection:text-accent-foreground">
-      {/* Phone Bezel - Removed p-4 from here as it's handled by the outer centering div in page.tsx */}
+      {/* Phone Bezel */}
       <div className="relative w-full max-w-[390px] h-[844px] bg-neutral-800 dark:bg-neutral-900 rounded-[60px] shadow-2xl p-3 border-4 border-neutral-700 dark:border-neutral-800">
         {/* Notch */}
         <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[130px] h-7 bg-neutral-800 dark:bg-neutral-900 rounded-b-2xl z-20">
@@ -23,26 +26,29 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
 
         {/* Inner Screen */}
         <div 
-          className={`w-full h-full rounded-[48px] overflow-hidden shadow-inner flex flex-col mobile-theme-container ${mobileTheme === 'dark' ? 'theme-mobile-dark' : ''}`}
+          className={cn(
+            "w-full h-full rounded-[48px] overflow-hidden shadow-inner flex flex-col mobile-theme-container",
+            mobileTheme === 'dark' ? 'theme-mobile-dark' : ''
+          )}
         >
-          {/* Status Bar */}
+          {/* Status Bar - Made transparent by removing explicit background */}
           <div className="h-12 px-4 sm:px-6 flex items-center justify-between text-sm font-medium text-foreground/80 pt-5 z-10 shrink-0">
             <ClientOnlyTime />
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-1.5 p-1 rounded-full bg-muted/50">
               <ThemeToggleButton 
                 currentTheme={mobileTheme} 
                 setTheme={setMobileTheme}
-                iconSize={16} // Smaller icon for status bar
-                className="w-7 h-7" // Adjust button size for status bar
+                iconSize={14} 
+                className="w-6 h-6" 
               />
-              <Signal size={16} aria-label="Signal strength" />
-              <Wifi size={16} aria-label="Wifi connection" />
-              <BatteryFull size={18} aria-label="Battery full" />
+              <Signal size={14} aria-label="Signal strength" />
+              <Wifi size={14} aria-label="Wifi connection" />
+              <BatteryFull size={16} aria-label="Battery full" />
             </div>
           </div>
 
           {/* App Content Area */}
-          <div className="flex-grow p-4 pt-2 overflow-y-auto">
+          <div className="flex-grow p-4 pt-2 overflow-y-auto pb-16"> {/* Added pb-16 for bottom nav clearance */}
             {children ? children : (
               <>
                 <h1 className="text-2xl font-semibold text-primary mt-4">Sumant's Portfolio App</h1>
@@ -59,6 +65,22 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
                 </div>
               </>
             )}
+          </div>
+
+          {/* Bottom Navigation Bar */}
+          <div className="h-16 bg-background border-t border-border flex items-center justify-around p-1 shrink-0 shadow-t-md">
+            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-2 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
+              <Home size={22} />
+              <span className="text-xs mt-0.5">Home</span>
+            </Button>
+            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-2 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
+              <UserCircle size={22} />
+              <span className="text-xs mt-0.5">Profile</span>
+            </Button>
+            <Button variant="ghost" size="icon" className="flex flex-col h-auto p-2 text-muted-foreground hover:text-primary focus-visible:text-primary data-[active=true]:text-primary">
+              <SettingsIcon size={22} />
+              <span className="text-xs mt-0.5">Settings</span>
+            </Button>
           </div>
         </div>
       </div>
