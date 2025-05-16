@@ -2,112 +2,165 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+/* Define base HSL values for outside theme */
+:root {
+  --light-outside-bg-hsl: 233 52% 94%; /* #E8EAF6 */
+  --light-outside-fg-hsl: 234 64% 30%; /* #1A237E */
+  --dark-outside-bg-hsl: 233 15% 12%;  /* Dark blue-gray #1D2026 */
+  --dark-outside-fg-hsl: 233 15% 88%;  /* Light gray-blue for text #D7DCE2 */
 }
 
-@layer base {
-  :root {
-    --background: 233 52% 94%; /* #E8EAF6 */
-    --foreground: 234 64% 30%; /* #1A237E */
+.outside-theme-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* align-items and justify-content removed to allow splash screen full coverage if needed before mobile layout is centered */
+  /* padding applied in page.tsx's centering div for MobileLayout */
 
-    --card: 233 52% 94%;
-    --card-foreground: 234 64% 30%;
+  /* Light theme by default for outside wrapper */
+  --current-outside-bg-hsl: var(--light-outside-bg-hsl);
+  --current-outside-fg-hsl: var(--light-outside-fg-hsl);
+  
+  background-color: hsl(var(--current-outside-bg-hsl));
+  color: hsl(var(--current-outside-fg-hsl));
 
-    --popover: 233 52% 94%;
-    --popover-foreground: 234 64% 30%;
+  /* Define ShadCN vars for elements like Splash and Toaster in the outside context (Light) */
+  --background: var(--current-outside-bg-hsl);
+  --foreground: var(--current-outside-fg-hsl);
+  --card: var(--current-outside-bg-hsl);
+  --card-foreground: var(--current-outside-fg-hsl);
+  --popover: var(--current-outside-bg-hsl);
+  --popover-foreground: var(--current-outside-fg-hsl);
+  --primary: 231 48% 48%; /* #3F51B5 */
+  --primary-foreground: 0 0% 100%; /* White */
+  --secondary: 233 30% 88%;
+  --secondary-foreground: 234 50% 35%;
+  --muted: 233 25% 85%;
+  --muted-foreground: 234 40% 55%;
+  --accent: 265 39% 55%; /* #7E57C2 */
+  --accent-foreground: 0 0% 100%; /* White */
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 233 30% 80%;
+  --input: 233 30% 80%;
+  --ring: 231 48% 48%;
+  --radius: 0.5rem;
+  --chart-1: 231 48% 48%;
+  --chart-2: 265 39% 55%;
+  --chart-3: 230 40% 60%;
+  --chart-4: 230 50% 70%;
+  --chart-5: 230 60% 80%;
+}
 
-    --primary: 231 48% 48%; /* #3F51B5 */
-    --primary-foreground: 0 0% 100%; /* White */
+.outside-theme-wrapper.theme-outside-dark {
+  --current-outside-bg-hsl: var(--dark-outside-bg-hsl);
+  --current-outside-fg-hsl: var(--dark-outside-fg-hsl);
 
-    --secondary: 233 30% 88%;
-    --secondary-foreground: 234 50% 35%;
+  /* Dark theme values for ShadCN vars in outside context */
+  --primary: 231 45% 65%; /* Lightened primary #6679CC */
+  --primary-foreground: 231 50% 15%;
+  --secondary: 233 15% 20%;
+  --secondary-foreground: 233 15% 80%;
+  --muted: 233 15% 18%;
+  --muted-foreground: 233 15% 60%;
+  --accent: 265 40% 70%;
+  --accent-foreground: 265 40% 15%;
+  --destructive: 0 70% 55%;
+  --destructive-foreground: 0 0% 95%;
+  --border: 233 15% 22%;
+  --input: 233 15% 22%;
+  --ring: 231 45% 65%;
+  --chart-1: 231 45% 65%;
+  --chart-2: 265 40% 70%;
+  --chart-3: 230 30% 55%;
+  --chart-4: 230 40% 65%;
+  --chart-5: 230 50% 75%;
+}
 
-    --muted: 233 25% 85%;
-    --muted-foreground: 234 40% 55%;
 
-    --accent: 265 39% 55%; /* #7E57C2 */
-    --accent-foreground: 0 0% 100%; /* White */
+/* Mobile Theme Container - This class will be applied to the mobile screen div */
+.mobile-theme-container {
+  /* Default light theme variables for ShadCN components inside mobile */
+  --background: 233 52% 94%; /* #E8EAF6 */
+  --foreground: 234 64% 30%; /* #1A237E */
+  --card: 233 52% 94%;
+  --card-foreground: 234 64% 30%;
+  --popover: 233 52% 94%;
+  --popover-foreground: 234 64% 30%;
+  --primary: 231 48% 48%; /* #3F51B5 */
+  --primary-foreground: 0 0% 100%; /* White */
+  --secondary: 233 30% 88%;
+  --secondary-foreground: 234 50% 35%;
+  --muted: 233 25% 85%;
+  --muted-foreground: 234 40% 55%;
+  --accent: 265 39% 55%; /* #7E57C2 */
+  --accent-foreground: 0 0% 100%; /* White */
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 233 30% 80%;
+  --input: 233 30% 80%;
+  --ring: 231 48% 48%; /* Primary color for rings */
+  --radius: 0.5rem;
+  --chart-1: 231 48% 48%;
+  --chart-2: 265 39% 55%;
+  --chart-3: 230 40% 60%;
+  --chart-4: 230 50% 70%;
+  --chart-5: 230 60% 80%;
+  --sidebar-background: 233 45% 92%;
+  --sidebar-foreground: 234 60% 35%;
+  --sidebar-primary: 231 48% 48%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 265 39% 55%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 233 30% 75%;
+  --sidebar-ring: 231 48% 48%;
+}
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 233 30% 80%;
-    --input: 233 30% 80%;
-    --ring: 231 48% 48%; /* Primary color for rings */
-
-    --radius: 0.5rem;
-
-    --chart-1: 231 48% 48%; /* Primary */
-    --chart-2: 265 39% 55%; /* Accent */
-    --chart-3: 230 40% 60%; 
-    --chart-4: 230 50% 70%;
-    --chart-5: 230 60% 80%;
-
-    /* Sidebar colors adapted to the new theme */
-    --sidebar-background: 233 45% 92%; /* Slightly darker than main background */
-    --sidebar-foreground: 234 60% 35%;
-    --sidebar-primary: 231 48% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 265 39% 55%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 233 30% 75%;
-    --sidebar-ring: 231 48% 48%;
-  }
-
-  .dark {
-    --background: 233 15% 12%; /* Dark blue-gray #1D2026 */
-    --foreground: 233 15% 88%; /* Light gray-blue for text #D7DCE2 */
-
-    --card: 233 15% 12%;
-    --card-foreground: 233 15% 88%;
-
-    --popover: 233 15% 12%;
-    --popover-foreground: 233 15% 88%;
-
-    --primary: 231 45% 65%; /* Lightened primary #6679CC */
-    --primary-foreground: 231 50% 15%; /* Dark text for lightened primary #1A1E33 */
-
-    --secondary: 233 15% 20%; /* Slightly lighter than dark background #2A2F3A */
-    --secondary-foreground: 233 15% 80%;
-
-    --muted: 233 15% 18%; /* More muted dark shade #252931 */
-    --muted-foreground: 233 15% 60%; /* Muted text #8A92A3 */
-
-    --accent: 265 40% 70%; /* Lightened accent #8C73C4 */
-    --accent-foreground: 265 40% 15%; /* Dark text for lightened accent #201A2D */
-
-    --destructive: 0 70% 55%;
-    --destructive-foreground: 0 0% 95%;
-
-    --border: 233 15% 22%; /* #2D323D */
-    --input: 233 15% 22%;
-    --ring: 231 45% 65%; /* Lightened primary for ring */
-
-    --chart-1: 231 45% 65%; /* Primary (dark) */
-    --chart-2: 265 40% 70%; /* Accent (dark) */
-    --chart-3: 230 30% 55%;
-    --chart-4: 230 40% 65%;
-    --chart-5: 230 50% 75%;
-    
-    /* Dark Sidebar colors adapted */
-    --sidebar-background: 233 15% 10%; /* Even darker for sidebar */
-    --sidebar-foreground: 233 15% 85%;
-    --sidebar-primary: 231 45% 65%;
-    --sidebar-primary-foreground: 231 50% 15%;
-    --sidebar-accent: 265 40% 70%;
-    --sidebar-accent-foreground: 265 40% 15%;
-    --sidebar-border: 233 15% 18%;
-    --sidebar-ring: 231 45% 65%;
-  }
+.mobile-theme-container.theme-mobile-dark {
+  /* Dark theme variables for ShadCN components inside mobile */
+  --background: 233 15% 12%; /* Dark blue-gray #1D2026 */
+  --foreground: 233 15% 88%; /* Light gray-blue for text #D7DCE2 */
+  --card: 233 15% 12%;
+  --card-foreground: 233 15% 88%;
+  --popover: 233 15% 12%;
+  --popover-foreground: 233 15% 88%;
+  --primary: 231 45% 65%; /* Lightened primary #6679CC */
+  --primary-foreground: 231 50% 15%; /* Dark text for lightened primary #1A1E33 */
+  --secondary: 233 15% 20%; /* Slightly lighter than dark background #2A2F3A */
+  --secondary-foreground: 233 15% 80%;
+  --muted: 233 15% 18%; /* More muted dark shade #252931 */
+  --muted-foreground: 233 15% 60%; /* Muted text #8A92A3 */
+  --accent: 265 40% 70%; /* Lightened accent #8C73C4 */
+  --accent-foreground: 265 40% 15%; /* Dark text for lightened accent #201A2D */
+  --destructive: 0 70% 55%;
+  --destructive-foreground: 0 0% 95%;
+  --border: 233 15% 22%; /* #2D323D */
+  --input: 233 15% 22%;
+  --ring: 231 45% 65%; /* Lightened primary for ring */
+  --chart-1: 231 45% 65%;
+  --chart-2: 265 40% 70%;
+  --chart-3: 230 30% 55%;
+  --chart-4: 230 40% 65%;
+  --chart-5: 230 50% 75%;
+  --sidebar-background: 233 15% 10%;
+  --sidebar-foreground: 233 15% 85%;
+  --sidebar-primary: 231 45% 65%;
+  --sidebar-primary-foreground: 231 50% 15%;
+  --sidebar-accent: 265 40% 70%;
+  --sidebar-accent-foreground: 265 40% 15%;
+  --sidebar-border: 233 15% 18%;
+  --sidebar-ring: 231 45% 65%;
 }
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border; /* Uses --border from the current scope */
   }
   body {
-    @apply bg-background text-foreground;
+    /* Basic body styles, background/color handled by .outside-theme-wrapper */
+  }
+  .mobile-theme-container {
+     @apply bg-background text-foreground; /* Uses its own scoped --background and --foreground */
   }
 }
 
