@@ -2,18 +2,18 @@
 "use client";
 
 import React, { useState } from 'react';
-import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi, User, MessageCircleMore, Info } from 'lucide-react'; 
+import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi, MessageCircleMore, Info } from 'lucide-react';
 import ClientOnlyTime from '@/components/client-only-time';
 import ThemeToggleButton from '@/components/theme-toggle-button';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import HomePageContent from '@/components/home-page-content';
 import EducationPageContent from '@/components/education-page-content';
-import ContactPageContent from '@/components/contact-page-content'; 
+import ContactPageContent from '@/components/contact-page-content';
 
 
 interface MobileLayoutProps {
-  children?: React.ReactNode; 
+  children?: React.ReactNode;
 }
 
 const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
@@ -25,13 +25,6 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
     switch (activeTab) {
       case 'Home':
         return <HomePageContent />;
-      case 'About': 
-        return (
-          <div className="p-4 text-center flex-grow flex flex-col justify-center items-center">
-            <h2 className="text-2xl font-semibold text-primary">About</h2>
-            <p className="text-muted-foreground mt-2 text-lg">Content for About is coming soon!</p>
-          </div>
-        );
       case 'Education':
         return <EducationPageContent />;
       case 'Contact':
@@ -40,12 +33,12 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
       case 'Experience':
         return (
           <div className="p-4 text-center flex-grow flex flex-col justify-center items-center">
-            <h2 className="text-2xl font-semibold text-primary">{activeTab}</h2>
-            <p className="text-muted-foreground mt-2 text-lg">Content for {activeTab} is coming soon!</p>
+            <h2 className="text-5xl font-semibold text-primary">{activeTab}</h2>
+            <p className="text-muted-foreground mt-2 text-3xl">Content for {activeTab} is coming soon!</p>
           </div>
         );
       default:
-        return <HomePageContent />; 
+        return <HomePageContent />;
     }
   };
 
@@ -66,7 +59,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           )}
         >
           {/* Status Bar Area */}
-          <div className="h-7 flex items-center justify-between text-base font-medium text-foreground z-10 shrink-0 mt-[5px] px-1">
+          <div className="h-7 flex items-center justify-between text-2xl font-medium text-foreground z-10 shrink-0 mt-[5px] px-1">
             {/* Left "Ear" - Clock */}
             <div className="flex-1 flex justify-center items-center">
               <div className="bg-muted/30 p-1.5 rounded-full flex items-center">
@@ -109,16 +102,6 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             >
               <Home size={20} />
               <span className="text-sm mt-0.5">Home</span>
-            </Button>
-             <Button 
-              variant="ghost"
-              size="icon"
-              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
-              data-active={activeTab === 'About'}
-              onClick={() => setActiveTab('About')}
-            >
-              <User size={20} />
-              <span className="text-sm mt-0.5">About</span>
             </Button>
             <Button
               variant="ghost"
