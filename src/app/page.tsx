@@ -5,10 +5,16 @@ import { useState, useEffect } from 'react';
 import SplashScreen from '@/components/splash-screen';
 import MobileLayout from '@/components/mobile-layout';
 import ThemeToggleButton from '@/components/theme-toggle-button';
-import HomePageContent from '@/components/home-page-content'; // Import the new component
+import HomePageContent from '@/components/home-page-content';
 import { Toaster } from "@/components/ui/toaster";
 
-export default function Home() {
+// Define props type for Home component
+interface HomePageProps {
+  params?: Record<string, string | string[]>;
+  searchParams?: Record<string, string | string[] | undefined>;
+}
+
+export default function Home({ params, searchParams }: HomePageProps) {
   const [showSplash, setShowSplash] = useState(true);
   const [fadeOutSplash, setFadeOutSplash] = useState(false);
   const [outsideTheme, setOutsideTheme] = useState<'light' | 'dark'>('light');
