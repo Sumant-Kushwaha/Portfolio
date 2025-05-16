@@ -51,7 +51,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           )}
         >
           {/* Status Bar - Made transparent */}
-          <div className="h-12 px-2 flex items-center justify-between text-sm font-medium text-foreground/80 pt-5 z-10 shrink-0">
+          <div className="h-12 px-2 sm:px-3 flex items-center justify-between text-sm font-medium text-foreground/80 pt-5 z-10 shrink-0">
             <ClientOnlyTime />
             <div className="flex items-center space-x-1.5 p-1 rounded-full bg-muted/50">
               <ThemeToggleButton 
@@ -65,7 +65,9 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           </div>
 
           {/* App Content Area */}
-          <div className="flex-grow p-4 pt-2 overflow-y-auto overflow-x-hidden pb-16">
+          <div className={cn(
+            "flex-grow p-4 pt-2 overflow-y-auto overflow-x-hidden pb-16 no-scrollbar"
+          )}>
             {children ? children : defaultContent}
           </div>
 

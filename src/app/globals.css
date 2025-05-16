@@ -186,3 +186,11 @@
   animation: fadeOut 0.5s ease-in-out forwards;
 }
 
+/* Custom utility to hide scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
