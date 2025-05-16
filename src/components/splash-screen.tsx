@@ -2,6 +2,7 @@
 "use client";
 
 import React from 'react';
+import { splashPageContent } from '@/data/splash-content';
 
 const SplashScreen: React.FC = () => {
   return (
@@ -13,13 +14,13 @@ const SplashScreen: React.FC = () => {
     >
       <div className="text-center p-8">
         <h1 className="text-5xl font-bold mb-4 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-          Sumant's Portfolio
+          {splashPageContent.title}
         </h1>
         <p className="text-xl mb-2 animate-fadeIn" style={{ animationDelay: '0.4s' }}>
-          Welcome to Sumant Mourya's interactive portfolio.
+          {splashPageContent.welcomeMessage}
         </p>
         <p className="text-lg text-primary-foreground/80 animate-fadeIn" style={{ animationDelay: '0.6s' }}>
-          Explore projects, skills, and experience within the mobile mockup.
+          {splashPageContent.exploreMessage}
         </p>
       </div>
     </div>

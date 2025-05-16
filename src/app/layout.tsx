@@ -1,7 +1,8 @@
+
 import type {Metadata} from 'next';
 import {Geist, Geist_Mono} from 'next/font/google';
 import './globals.css';
-// import { Toaster } from "@/components/ui/toaster"; // Moved to page.tsx
+import { siteMetadata } from '@/data/metadata-content';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -14,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sumant's Mobile Portfolio",
-  description: "Explore Sumant Mourya's projects, skills, and experience.",
+  title: siteMetadata.title,
+  description: siteMetadata.description,
 };
 
 export default function RootLayout({
@@ -27,7 +28,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
-        {/* Toaster moved to page.tsx to be themed by outside-theme-wrapper */}
       </body>
     </html>
   );
