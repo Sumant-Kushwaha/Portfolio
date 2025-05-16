@@ -53,7 +53,6 @@ const HomePageContent: React.FC = () => {
         timeoutId = setTimeout(() => {
           setIsDeleting(false);
           setSkillIndex((prev) => (prev + 1) % homePageContent.dynamicSkills.length);
-          // charIndex is already 0, setDisplayedText will be empty or start fresh
         }, PAUSE_DURATION_AFTER_DELETING);
       }
     }
@@ -74,7 +73,7 @@ const HomePageContent: React.FC = () => {
             <h1 className="text-3xl font-bold text-foreground mb-1">
               {homePageContent.greeting}
             </h1>
-            <div className="flex items-center justify-center text-accent font-semibold mb-2 h-9 text-xl">
+            <div className="flex items-center justify-center text-accent font-semibold mb-2 h-12 text-3xl">
               <span>{displayedText}</span>
               <span className="animate-blink ml-0.5">|</span>
             </div>
@@ -117,7 +116,7 @@ const HomePageContent: React.FC = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="p-2 pt-0 text-center">
-                      <p className="text-xl font-bold text-accent">{stat.value}</p> 
+                      <p className="text-2xl font-bold text-accent">{stat.value}</p> 
                       <p className="text-sm text-muted-foreground">{stat.subValue}</p>
                     </CardContent>
                   </Card>

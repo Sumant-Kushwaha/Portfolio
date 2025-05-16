@@ -24,12 +24,14 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
 
   useEffect(() => {
     const storedMobileTheme = localStorage.getItem('mobileTheme') as 'light' | 'dark' | null;
-    if (storedMobileTheme) {
+    if (storedMobileTheme && (storedMobileTheme === 'light' || storedMobileTheme === 'dark')) {
       setMobileTheme(storedMobileTheme);
     } else {
       if (typeof window !== 'undefined') {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         setMobileTheme(prefersDark ? 'dark' : 'light');
+         // If an invalid value was in localStorage, or nothing was there, set the determined theme.
+        localStorage.setItem('mobileTheme', prefersDark ? 'dark' : 'light');
       }
     }
   }, []);
@@ -83,19 +85,17 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             {/* Notch Spacer for layout */}
             <div className="w-[100px] shrink-0"></div>
             {/* Right "Ear" - Icons */}
-            <div className="flex-1 flex justify-center items-center">
-              <div className="flex items-center space-x-2">
+            <div className="flex-1 flex justify-end items-center space-x-2">
                 <Wifi size={16} aria-label="WiFi status" className="text-foreground" />
                 <BatteryFull size={16} aria-label="Battery full" className="text-foreground" />
                 <div className="p-1 rounded-full bg-muted/30">
-                  <ThemeToggleButton
-                    currentTheme={mobileTheme}
-                    setTheme={setMobileTheme}
-                    iconSize={16}
-                    className="w-6 h-6 text-foreground" 
-                  />
+                    <ThemeToggleButton
+                        currentTheme={mobileTheme}
+                        setTheme={setMobileTheme}
+                        iconSize={16}
+                        className="w-6 h-6 text-foreground" 
+                    />
                 </div>
-              </div>
             </div>
           </div>
 

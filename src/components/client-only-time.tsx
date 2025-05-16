@@ -25,7 +25,7 @@ const ClientOnlyTime: React.FC = () => {
     return <span className="w-14"></span>; // Placeholder width to prevent layout shift
   }
 
-  return <span className="text-base">{time}</span>;
+  return <span className="text-xl">{time}</span>;
 };
 
 export default ClientOnlyTime;

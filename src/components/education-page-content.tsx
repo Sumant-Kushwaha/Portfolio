@@ -1,7 +1,7 @@
 
 "use client";
 
-import React from 'react'; // Added this line
+import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { CalendarDays, MapPin, GraduationCap } from "lucide-react";
