@@ -158,6 +158,7 @@
   }
   body {
     /* Basic body styles, background/color handled by .outside-theme-wrapper */
+    overflow-x: hidden; /* Prevent horizontal scroll on the body */
   }
   .mobile-theme-container {
      @apply bg-background text-foreground; /* Uses its own scoped --background and --foreground */
