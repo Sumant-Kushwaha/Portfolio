@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail } from 'lucide-react';
+import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi } from 'lucide-react'; // Added Wifi
 import ClientOnlyTime from '@/components/client-only-time';
 import ThemeToggleButton from '@/components/theme-toggle-button';
 import { Button } from '@/components/ui/button';
@@ -50,26 +50,27 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             mobileTheme === 'dark' ? 'theme-mobile-dark' : ''
           )}
         >
-          {/* Status Bar - Height matching notch */}
-          {/* This div reserves space for the notch overlay, content appears below it */}
-          {/* <div className="h-7 shrink-0"></div> */}
-          
-          <div className="h-7 flex items-center justify-between text-sm font-medium text-foreground/80 z-10 shrink-0 mt-[5px] px-1">
+          {/* Status Bar Area */}
+          <div className="h-7 flex items-center justify-between text-sm font-medium text-foreground z-10 shrink-0 mt-[5px] px-1"> {/* Changed text-foreground/80 to text-foreground */}
+            {/* Left "Ear" - Clock */}
             <div className="flex-1 flex justify-center items-center">
-              <div className="bg-muted/50 p-1 rounded-full flex items-center">
+              <div className="bg-muted/50 p-1.5 rounded-full flex items-center"> {/* Increased padding to p-1.5 */}
                 <ClientOnlyTime />
               </div>
             </div>
-            <div className="w-[130px] shrink-0"> {/* Notch Spacer */} </div>
+            {/* Notch Spacer */}
+            <div className="w-[130px] shrink-0"></div>
+            {/* Right "Ear" - Icons */}
             <div className="flex-1 flex justify-center items-center">
-              <div className="flex items-center space-x-1.5 p-1 rounded-full bg-muted/50">
+              <div className="flex items-center space-x-1.5 p-1.5 rounded-full bg-muted/50"> {/* Increased padding to p-1.5 */}
                 <ThemeToggleButton
                   currentTheme={mobileTheme}
                   setTheme={setMobileTheme}
                   iconSize={14}
                   className="w-6 h-6 text-foreground"
                 />
-                <BatteryFull size={16} aria-label="Battery full" className="text-foreground" />
+                <Wifi size={14} aria-label="WiFi status" className="text-foreground" />
+                <BatteryFull size={14} aria-label="Battery full" className="text-foreground" /> {/* Adjusted size to 14 */}
               </div>
             </div>
           </div>
