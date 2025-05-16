@@ -2,14 +2,17 @@
 "use client";
 
 import React, { useState } from 'react';
-import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi } from 'lucide-react';
+import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi, Signal } from 'lucide-react';
 import ClientOnlyTime from '@/components/client-only-time';
 import ThemeToggleButton from '@/components/theme-toggle-button';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import HomePageContent from '@/components/home-page-content';
+import EducationPageContent from '@/components/education-page-content';
+
 
 interface MobileLayoutProps {
-  children?: React.ReactNode;
+  children?: React.ReactNode; // Kept for potential future use, but content is now driven by activeTab
 }
 
 const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
@@ -17,22 +20,25 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
   const [activeTab, setActiveTab] = useState('Home');
 
 
-  const defaultContent = (
-    <>
-      <h1 className="text-2xl font-semibold text-primary mt-4">Sumant's Portfolio App</h1>
-      <p className="text-muted-foreground mt-2">
-        Content will be displayed here. Navigate through sections like a mobile app.
-      </p>
-      <div className="mt-8 space-y-4">
-        {[1,2,3].map(i => (
-          <div key={i} className="bg-card p-4 rounded-lg shadow">
-            <h2 className="text-lg font-medium text-card-foreground">Section {i}</h2>
-            <p className="text-sm text-muted-foreground mt-1">This is a placeholder for future content.</p>
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'Home':
+        return <HomePageContent />;
+      case 'Education':
+        return <EducationPageContent />;
+      case 'Projects':
+      case 'Experience':
+      case 'Contact':
+        return (
+          <div className="p-4 text-center flex-grow flex flex-col justify-center items-center">
+            <h2 className="text-2xl font-semibold text-primary">{activeTab}</h2>
+            <p className="text-muted-foreground mt-2">Content for {activeTab} is coming soon!</p>
           </div>
-        ))}
-      </div>
-    </>
-  );
+        );
+      default:
+        return <HomePageContent />; // Default to Home
+    }
+  };
 
   return (
     <main className="flex justify-center items-center selection:bg-accent selection:text-accent-foreground">
@@ -78,9 +84,9 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
 
           {/* App Content Area */}
           <div className={cn(
-            "flex-grow p-4 pt-2 overflow-y-auto overflow-x-hidden pb-16 no-scrollbar"
+            "flex-grow p-1 pt-1 overflow-y-auto overflow-x-hidden pb-[calc(4rem+0.25rem)] no-scrollbar"
           )}>
-            {children ? children : defaultContent}
+            {renderContent()}
           </div>
 
           {/* Bottom Navigation Bar - Translucent */}
