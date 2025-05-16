@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 import HomePageContent from '@/components/home-page-content';
 import EducationPageContent from '@/components/education-page-content';
 import ContactPageContent from '@/components/contact-page-content';
+import ExperiencePageContent from '@/components/experience-page-content';
 
 
 interface MobileLayoutProps {
@@ -27,11 +28,12 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
         return <HomePageContent />;
       case 'Education':
         return <EducationPageContent />;
+      case 'Experience':
+        return <ExperiencePageContent />;
       case 'Contact':
         return <ContactPageContent />;
       case 'Projects':
-      case 'Experience':
-      // case 'About': // Removed About for now
+      // case 'About': // Removed About
         return (
           <div className="p-4 text-center flex-grow flex flex-col justify-center items-center">
             <h2 className="text-5xl font-semibold text-primary">{activeTab}</h2>
@@ -102,7 +104,6 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               <Home size={20} />
               <span className="text-2xl mt-0.5">Home</span>
             </Button>
-            {/* Removed About Button */}
             <Button
               variant="ghost"
               size="icon"
