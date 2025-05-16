@@ -2,17 +2,18 @@
 "use client";
 
 import React, { useState } from 'react';
-import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi } from 'lucide-react';
+import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi, User } from 'lucide-react'; // Added User
 import ClientOnlyTime from '@/components/client-only-time';
 import ThemeToggleButton from '@/components/theme-toggle-button';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import HomePageContent from '@/components/home-page-content';
 import EducationPageContent from '@/components/education-page-content';
+import ContactPageContent from '@/components/contact-page-content'; // Added ContactPageContent
 
 
 interface MobileLayoutProps {
-  children?: React.ReactNode; // Kept for potential future use, but content is now driven by activeTab
+  children?: React.ReactNode; 
 }
 
 const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
@@ -24,11 +25,19 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
     switch (activeTab) {
       case 'Home':
         return <HomePageContent />;
+      case 'About': // Added About case
+        return (
+          <div className="p-4 text-center flex-grow flex flex-col justify-center items-center">
+            <h2 className="text-2xl font-semibold text-primary">About</h2>
+            <p className="text-muted-foreground mt-2">Content for About is coming soon!</p>
+          </div>
+        );
       case 'Education':
         return <EducationPageContent />;
+      case 'Contact':
+        return <ContactPageContent />;
       case 'Projects':
       case 'Experience':
-      case 'Contact':
         return (
           <div className="p-4 text-center flex-grow flex flex-col justify-center items-center">
             <h2 className="text-2xl font-semibold text-primary">{activeTab}</h2>
@@ -36,14 +45,14 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           </div>
         );
       default:
-        return <HomePageContent />; // Default to Home
+        return <HomePageContent />; 
     }
   };
 
   return (
-    <main className="flex justify-center items-center selection:bg-accent selection:text-accent-foreground">
+    <main className="flex justify-center items-center selection:bg-accent selection:text-accent-foreground w-full h-full">
       {/* Phone Bezel */}
-      <div className="relative w-full max-w-[390px] h-[844px] bg-neutral-800 dark:bg-neutral-900 rounded-[60px] shadow-2xl p-3 border-4 border-neutral-700 dark:border-neutral-800">
+      <div className="relative w-full max-w-[390px] aspect-[390/844] h-auto max-h-full bg-neutral-800 dark:bg-neutral-900 rounded-[60px] shadow-2xl p-3 border-4 border-neutral-700 dark:border-neutral-800">
         {/* Notch physical overlay */}
         <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[130px] h-7 bg-neutral-800 dark:bg-neutral-900 rounded-b-2xl z-20">
           <div className="w-12 h-1.5 bg-neutral-600 dark:bg-neutral-700 rounded-full mx-auto mt-2.5"></div>
@@ -101,15 +110,15 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               <Home size={20} />
               <span className="text-[10px] mt-0.5">Home</span>
             </Button>
-            <Button
+             <Button // About Button
               variant="ghost"
               size="icon"
               className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
-              data-active={activeTab === 'Education'}
-              onClick={() => setActiveTab('Education')}
+              data-active={activeTab === 'About'}
+              onClick={() => setActiveTab('About')}
             >
-              <GraduationCap size={20} />
-              <span className="text-[10px] mt-0.5">Education</span>
+              <User size={20} />
+              <span className="text-[10px] mt-0.5">About</span>
             </Button>
             <Button
               variant="ghost"
@@ -120,6 +129,16 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             >
               <Briefcase size={20} />
               <span className="text-[10px] mt-0.5">Projects</span>
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-primary"
+              data-active={activeTab === 'Education'}
+              onClick={() => setActiveTab('Education')}
+            >
+              <GraduationCap size={20} />
+              <span className="text-[10px] mt-0.5">Education</span>
             </Button>
             <Button
               variant="ghost"
