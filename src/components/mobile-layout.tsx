@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi } from 'lucide-react'; // Added Wifi
+import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi } from 'lucide-react';
 import ClientOnlyTime from '@/components/client-only-time';
 import ThemeToggleButton from '@/components/theme-toggle-button';
 import { Button } from '@/components/ui/button';
@@ -38,7 +38,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
     <main className="flex justify-center items-center selection:bg-accent selection:text-accent-foreground">
       {/* Phone Bezel */}
       <div className="relative w-full max-w-[390px] h-[844px] bg-neutral-800 dark:bg-neutral-900 rounded-[60px] shadow-2xl p-3 border-4 border-neutral-700 dark:border-neutral-800">
-        {/* Notch */}
+        {/* Notch physical overlay */}
         <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[130px] h-7 bg-neutral-800 dark:bg-neutral-900 rounded-b-2xl z-20">
           <div className="w-12 h-1.5 bg-neutral-600 dark:bg-neutral-700 rounded-full mx-auto mt-2.5"></div>
         </div>
@@ -51,18 +51,18 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           )}
         >
           {/* Status Bar Area */}
-          <div className="h-7 flex items-center justify-between text-sm font-medium text-foreground z-10 shrink-0 mt-[5px] px-1"> {/* Changed text-foreground/80 to text-foreground */}
+          <div className="h-7 flex items-center justify-between text-sm font-medium text-foreground z-10 shrink-0 mt-[5px] px-1">
             {/* Left "Ear" - Clock */}
             <div className="flex-1 flex justify-center items-center">
-              <div className="bg-muted/50 p-1.5 rounded-full flex items-center"> {/* Increased padding to p-1.5 */}
+              <div className="bg-muted/30 p-1.5 rounded-full flex items-center">
                 <ClientOnlyTime />
               </div>
             </div>
-            {/* Notch Spacer */}
+            {/* Notch Spacer for layout */}
             <div className="w-[130px] shrink-0"></div>
             {/* Right "Ear" - Icons */}
             <div className="flex-1 flex justify-center items-center">
-              <div className="flex items-center space-x-1.5 p-1.5 rounded-full bg-muted/50"> {/* Increased padding to p-1.5 */}
+              <div className="flex items-center space-x-1.5 p-1.5 rounded-full bg-muted/30">
                 <ThemeToggleButton
                   currentTheme={mobileTheme}
                   setTheme={setMobileTheme}
@@ -70,7 +70,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
                   className="w-6 h-6 text-foreground"
                 />
                 <Wifi size={14} aria-label="WiFi status" className="text-foreground" />
-                <BatteryFull size={14} aria-label="Battery full" className="text-foreground" /> {/* Adjusted size to 14 */}
+                <BatteryFull size={14} aria-label="Battery full" className="text-foreground" />
               </div>
             </div>
           </div>
@@ -83,8 +83,8 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             {children ? children : defaultContent}
           </div>
 
-          {/* Bottom Navigation Bar - Transparent */}
-          <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-t-md">
+          {/* Bottom Navigation Bar - Translucent */}
+          <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-t-md bg-background/70 backdrop-blur-sm">
             <Button
               variant="ghost"
               size="icon"
