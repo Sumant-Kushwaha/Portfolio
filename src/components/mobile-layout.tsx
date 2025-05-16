@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi, User, MessageCircleMore } from 'lucide-react';
 import ClientOnlyTime from '@/components/client-only-time';
 import ThemeToggleButton from '@/components/theme-toggle-button';
@@ -19,20 +19,38 @@ interface MobileLayoutProps {
 }
 
 const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
-  const [mobileTheme, setMobileTheme] = useState<'light' | 'dark'>('light');
+  const [mobileTheme, setMobileTheme] = useState<'light' | 'dark'>('light'); // Default for SSR
   const [activeTab, setActiveTab] = useState('Home');
+
+  useEffect(() => {
+    // Load stored theme or detect system preference for mobile theme
+    const storedMobileTheme = localStorage.getItem('mobileTheme') as 'light' | 'dark' | null;
+    if (storedMobileTheme) {
+      setMobileTheme(storedMobileTheme);
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setMobileTheme(prefersDark ? 'dark' : 'light');
+    }
+  }, []); // Empty dependency array: runs once on mount
+
+  useEffect(() => {
+    // Save mobileTheme to localStorage whenever it changes
+    if (typeof window !== 'undefined') { // Ensure localStorage is available
+        localStorage.setItem('mobileTheme', mobileTheme);
+    }
+  }, [mobileTheme]);
 
 
   const renderContent = () => {
     switch (activeTab) {
       case 'Home':
         return <HomePageContent />;
+      case 'Projects': 
+        return <ProjectsPageContent />;
       case 'Education':
         return <EducationPageContent />;
       case 'Experience':
         return <ExperiencePageContent />;
-      case 'Projects': 
-        return <ProjectsPageContent />;
       case 'Contact':
         return <ContactPageContent />;
       default:
@@ -57,7 +75,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           )}
         >
           {/* Status Bar Area */}
-          <div className="h-7 flex items-center justify-between text-foreground z-10 shrink-0 px-5">
+          <div className="h-10 flex items-center justify-between text-foreground z-10 shrink-0 px-5">
             {/* Left "Ear" - Clock */}
             <div className="flex-1 flex justify-center items-center">
               <ClientOnlyTime />
