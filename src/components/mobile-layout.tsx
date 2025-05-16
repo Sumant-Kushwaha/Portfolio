@@ -46,7 +46,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
       <div className="relative w-full max-w-[410px] aspect-[410/844] h-auto max-h-full bg-neutral-800 dark:bg-neutral-900 rounded-[60px] shadow-2xl p-3 border-4 border-neutral-700 dark:border-neutral-800">
         {/* Notch physical overlay */}
         <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-[100px] h-6 bg-neutral-800 dark:bg-neutral-900 rounded-full z-20">
-          <div className="w-10 h-1 bg-neutral-600 dark:bg-neutral-700 rounded-full mx-auto mt-2"></div>
+          <div className="w-10 h-1 bg-neutral-600 dark:bg-neutral-700 rounded-full mx-auto mt-2.5"></div>
         </div>
 
         {/* Inner Screen */}
@@ -97,7 +97,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Home')}
             >
               <Home size={20} />
-              <span className="text-2xl mt-0.5">Home</span>
+              <span className="text-sm mt-0.5">Home</span>
             </Button>
             <Button
               variant="ghost"
@@ -107,7 +107,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Projects')}
             >
               <Briefcase size={20} />
-              <span className="text-2xl mt-0.5">Projects</span>
+              <span className="text-sm mt-0.5">Projects</span>
             </Button>
             <Button
               variant="ghost"
@@ -117,7 +117,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Education')}
             >
               <GraduationCap size={20} />
-              <span className="text-2xl mt-0.5">Education</span>
+              <span className="text-sm mt-0.5">Education</span>
             </Button>
             <Button
               variant="ghost"
@@ -127,7 +127,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Experience')}
             >
               <Award size={20} />
-              <span className="text-2xl mt-0.5">Experience</span>
+              <span className="text-sm mt-0.5">Experience</span>
             </Button>
             <Button
               variant="ghost"
@@ -137,7 +137,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Contact')}
             >
               <Mail size={20} />
-              <span className="text-2xl mt-0.5">Contact</span>
+              <span className="text-sm mt-0.5">Contact</span>
             </Button>
           </div>
         </div>
