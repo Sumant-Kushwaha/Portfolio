@@ -32,29 +32,30 @@ const HomePageContent: React.FC = () => {
   return (
     <div className="flex flex-col text-foreground">
       {/* Top Section (Personal Introduction) */}
-      <div className="bg-gradient-to-b from-neutral-900 via-neutral-900 to-neutral-800 p-6 rounded-t-xl -mx-4 -mt-2">
-        <div className="flex flex-col items-center text-center">
-          <Avatar className="w-24 h-24 mb-4 border-2 border-primary">
-            <AvatarImage src="https://placehold.co/100x100.png" alt="Sumant Mourya" data-ai-hint="profile avatar" />
-            <AvatarFallback>SM</AvatarFallback>
-          </Avatar>
-          <h1 className="text-3xl font-bold text-neutral-100 mb-1">
-            Hi! I'm Sumant Mourya 👋
-          </h1>
-          <p className="text-lg text-accent font-semibold mb-3 h-6">
-            {skills[currentSkillIndex]}
-          </p>
-          <p className="text-sm text-neutral-300 mb-6 max-w-md">
-            Passionate about crafting clean, efficient, and beautiful Android apps using Kotlin and Jetpack Compose. 
-            With a strong foundation in Android architecture components, modern UI design, and automation scripting, 
-            I build apps that are both functional and delightful to use.
-          </p>
-          {/* "My Tech Stack" label and badges removed from here */}
-        </div>
-      </div>
+      <Card className="shadow-lg mb-6">
+        <CardContent className="pt-6"> {/* Added pt-6 for padding similar to original p-6 */}
+          <div className="flex flex-col items-center text-center">
+            <Avatar className="w-24 h-24 mb-4 border-2 border-primary">
+              <AvatarImage src="https://placehold.co/100x100.png" alt="Sumant Mourya" data-ai-hint="profile avatar" />
+              <AvatarFallback>SM</AvatarFallback>
+            </Avatar>
+            <h1 className="text-2xl font-bold text-foreground mb-1">
+              Hi! I'm Sumant Mourya 👋
+            </h1>
+            <p className="text-lg text-accent font-semibold mb-3 h-6">
+              {skills[currentSkillIndex]}
+            </p>
+            <p className="text-sm text-muted-foreground mb-6 max-w-md">
+              Passionate about crafting clean, efficient, and beautiful Android apps using Kotlin and Jetpack Compose. 
+              With a strong foundation in Android architecture components, modern UI design, and automation scripting, 
+              I build apps that are both functional and delightful to use.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Second Section (Experience & Contact) */}
-      <div className="p-2 pt-6 flex-grow">
+      <div className="p-2 pt-0 flex-grow"> {/* Adjusted pt-0 as the Card above now has mb-6 */}
         <h2 className="text-xl font-semibold text-primary mb-4 text-center">Highlights & Skills</h2>
         
         <div className="mb-6">
@@ -135,4 +136,3 @@ const HomePageContent: React.FC = () => {
 };
 
 export default HomePageContent;
-
