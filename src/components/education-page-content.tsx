@@ -22,19 +22,19 @@ const EducationPageContent: React.FC = () => {
                 Bachelor of Computer Applications (BCA)
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-3 text-2xl">
-              <CardDescription className="text-2xl text-muted-foreground mb-2">
+            <CardContent className="p-3 text-xl"> {/* Changed text-2xl to text-xl */}
+              <CardDescription className="text-xl text-muted-foreground mb-2"> {/* Changed text-2xl to text-xl */}
                 HEC Group of Institutions, Sri Dev Suman Uttarakhand University
               </CardDescription>
-              <div className="flex items-center text-muted-foreground mb-1 text-xl">
+              <div className="flex items-center text-muted-foreground mb-1 text-xl"> {/* Changed text-2xl to text-xl */}
                 <CalendarDays size={20} className="mr-2 text-accent flex-shrink-0" />
                 <span>2022 - 2025 (Expected)</span>
               </div>
-              <div className="flex items-center text-muted-foreground mb-2 text-xl">
+              <div className="flex items-center text-muted-foreground mb-2 text-xl"> {/* Changed text-2xl to text-xl */}
                 <MapPin size={20} className="mr-2 text-accent flex-shrink-0" />
                 <span>Uttarakhand, India</span>
               </div>
-              <ul className="list-disc list-inside space-y-1 text-muted-foreground text-xl pl-1">
+              <ul className="list-disc list-inside space-y-1 text-muted-foreground text-xl pl-1"> {/* Changed text-2xl to text-xl */}
                 <li>Currently in 6th Semester.</li>
                 <li>Focusing on software development, database management, and web technologies.</li>
                 <li>Key Skills: C, C++, Kotlin, HTML, CSS, SQL, .NET, Microsoft Office 365.</li>
@@ -51,15 +51,15 @@ const EducationPageContent: React.FC = () => {
                 Secondary Education
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-3 text-2xl">
-              <CardDescription className="text-2xl text-muted-foreground mb-2">
+            <CardContent className="p-3 text-xl"> {/* Changed text-2xl to text-xl */}
+              <CardDescription className="text-xl text-muted-foreground mb-2"> {/* Changed text-2xl to text-xl */}
                 Dhoom Singh Memorial Public School
               </CardDescription>
-              <div className="flex items-center text-muted-foreground mb-1 text-xl">
+              <div className="flex items-center text-muted-foreground mb-1 text-xl"> {/* Changed text-2xl to text-xl */}
                 <CalendarDays size={20} className="mr-2 text-accent flex-shrink-0" />
                 <span>Year of Completion: 2022</span>
               </div>
-              <div className="flex items-center text-muted-foreground text-xl">
+              <div className="flex items-center text-muted-foreground text-xl"> {/* Changed text-2xl to text-xl */}
                 <MapPin size={20} className="mr-2 text-accent flex-shrink-0" />
                 <span>Sitapur, Jawalapur, Haridwar</span>
               </div>
