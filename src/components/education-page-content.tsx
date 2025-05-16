@@ -2,6 +2,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { CalendarDays, MapPin } from "lucide-react";
 
 const EducationPageContent: React.FC = () => {
@@ -9,31 +10,31 @@ const EducationPageContent: React.FC = () => {
     <div className="flex flex-col space-y-2.5">
       <Card className="shadow-lg">
         <CardHeader className="p-3">
-          <CardTitle className="text-2xl font-semibold text-primary text-center">
+          <CardTitle className="text-4xl font-semibold text-primary text-center">
             My Education
           </CardTitle>
         </CardHeader>
         <CardContent className="p-3 pt-1 space-y-2.5">
           {/* First Nested Education Card: BCA */}
-          <Card className="shadow-md bg-card">
-            <CardHeader className="p-3 pb-1">
-              <CardTitle className="text-xl font-bold text-foreground">
+          <Card className="shadow-md bg-card overflow-hidden">
+            <CardHeader className="p-3 bg-muted/30">
+              <CardTitle className="text-3xl font-bold text-foreground">
                 Bachelor of Computer Applications (BCA)
               </CardTitle>
-              <CardDescription className="text-base text-muted-foreground pt-0.5">
+            </CardHeader>
+            <CardContent className="p-3 text-2xl">
+              <CardDescription className="text-2xl text-muted-foreground mb-2">
                 HEC Group of Institutions, Sri Dev Suman Uttarakhand University
               </CardDescription>
-            </CardHeader>
-            <CardContent className="p-3 pt-1 text-base">
-              <div className="flex items-center text-muted-foreground mb-1 text-sm">
-                <CalendarDays size={16} className="mr-2 text-accent flex-shrink-0" />
+              <div className="flex items-center text-muted-foreground mb-1 text-xl">
+                <CalendarDays size={20} className="mr-2 text-accent flex-shrink-0" />
                 <span>2022 - 2025 (Expected)</span>
               </div>
-              <div className="flex items-center text-muted-foreground mb-2 text-sm">
-                <MapPin size={16} className="mr-2 text-accent flex-shrink-0" />
+              <div className="flex items-center text-muted-foreground mb-2 text-xl">
+                <MapPin size={20} className="mr-2 text-accent flex-shrink-0" />
                 <span>Uttarakhand, India</span>
               </div>
-              <ul className="list-disc list-inside space-y-0.5 text-muted-foreground text-sm pl-1">
+              <ul className="list-disc list-inside space-y-1 text-muted-foreground text-xl pl-1">
                 <li>Currently in 6th Semester.</li>
                 <li>Focusing on software development, database management, and web technologies.</li>
                 <li>Key Skills: C, C++, Kotlin, HTML, CSS, SQL, .NET, Microsoft Office 365.</li>
@@ -41,23 +42,25 @@ const EducationPageContent: React.FC = () => {
             </CardContent>
           </Card>
 
+          <Separator className="my-3 bg-border" />
+
           {/* Second Nested Education Card: Secondary Education */}
-          <Card className="shadow-md bg-card">
-            <CardHeader className="p-3 pb-1">
-              <CardTitle className="text-xl font-bold text-foreground">
+          <Card className="shadow-md bg-card overflow-hidden">
+            <CardHeader className="p-3 bg-muted/30">
+              <CardTitle className="text-3xl font-bold text-foreground">
                 Secondary Education
               </CardTitle>
-              <CardDescription className="text-base text-muted-foreground pt-0.5">
+            </CardHeader>
+            <CardContent className="p-3 text-2xl">
+              <CardDescription className="text-2xl text-muted-foreground mb-2">
                 Dhoom Singh Memorial Public School
               </CardDescription>
-            </CardHeader>
-            <CardContent className="p-3 pt-1 text-base">
-              <div className="flex items-center text-muted-foreground mb-1 text-sm">
-                <CalendarDays size={16} className="mr-2 text-accent flex-shrink-0" />
+              <div className="flex items-center text-muted-foreground mb-1 text-xl">
+                <CalendarDays size={20} className="mr-2 text-accent flex-shrink-0" />
                 <span>Year of Completion: 2022</span>
               </div>
-              <div className="flex items-center text-muted-foreground text-sm">
-                <MapPin size={16} className="mr-2 text-accent flex-shrink-0" />
+              <div className="flex items-center text-muted-foreground text-xl">
+                <MapPin size={20} className="mr-2 text-accent flex-shrink-0" />
                 <span>Sitapur, Jawalapur, Haridwar</span>
               </div>
             </CardContent>
