@@ -1,12 +1,11 @@
 
 "use client";
 
-import Image from 'next/image';
 import { projectsData, type Project } from '@/data/projects-data';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Link as LinkIcon, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 const ProjectsPageContent: React.FC = () => {
   const sortedProjects = [...projectsData].sort((a, b) => a.id - b.id);
@@ -16,17 +15,6 @@ const ProjectsPageContent: React.FC = () => {
       <h2 className="text-4xl font-semibold text-primary mb-0 text-center">My Projects</h2>
       {sortedProjects.map((project) => (
         <Card key={project.id} className="shadow-lg overflow-hidden">
-          {project.image && (
-            <div className="relative w-full h-40 sm:h-48"> {/* Adjusted height */}
-              <Image
-                src={project.image}
-                alt={project.title}
-                layout="fill"
-                objectFit="cover"
-                data-ai-hint={project.dataAiHint || 'project image'}
-              />
-            </div>
-          )}
           <CardHeader className="p-3 pb-1.5">
             <CardTitle className="text-3xl font-bold text-foreground">{project.title}</CardTitle>
           </CardHeader>
