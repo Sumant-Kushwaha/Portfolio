@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Phone, Briefcase, Zap, Code, Users, BookOpen } from 'lucide-react'; // Added more icons
+import { Mail, Phone, Briefcase, Zap, Code, Users } from 'lucide-react';
 
 const skills = [
   "Kotlin Android App Developer",
@@ -32,33 +32,24 @@ const HomePageContent: React.FC = () => {
   return (
     <div className="flex flex-col text-foreground">
       {/* Top Section (Personal Introduction) */}
-      <div className="bg-gradient-to-b from-neutral-900 via-neutral-900 to-neutral-800 text-primary-foreground p-6 rounded-t-xl -mx-4 -mt-2">
+      <div className="bg-gradient-to-b from-neutral-900 via-neutral-900 to-neutral-800 p-6 rounded-t-xl -mx-4 -mt-2">
         <div className="flex flex-col items-center text-center">
           <Avatar className="w-24 h-24 mb-4 border-2 border-primary">
             <AvatarImage src="https://placehold.co/100x100.png" alt="Sumant Mourya" data-ai-hint="profile avatar" />
             <AvatarFallback>SM</AvatarFallback>
           </Avatar>
-          <h1 className="text-3xl font-bold text-primary-foreground mb-1">
+          <h1 className="text-3xl font-bold text-neutral-100 mb-1">
             Hi! I'm Sumant Mourya 👋
           </h1>
           <p className="text-lg text-accent font-semibold mb-3 h-6">
             {skills[currentSkillIndex]}
           </p>
-          <p className="text-sm text-primary-foreground/80 mb-6 max-w-md">
+          <p className="text-sm text-neutral-300 mb-6 max-w-md">
             Passionate about crafting clean, efficient, and beautiful Android apps using Kotlin and Jetpack Compose. 
             With a strong foundation in Android architecture components, modern UI design, and automation scripting, 
             I build apps that are both functional and delightful to use.
           </p>
-          <p className="text-md font-semibold text-accent mb-3">
-            My Tech Stack:
-          </p>
-          <div className="flex flex-wrap justify-center gap-2">
-            {techStack.slice(0, 7).map((skill) => ( // Show a subset for brevity here
-              <Badge key={skill} variant="secondary" className="shadow-md px-3 py-1 text-sm bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20">
-                {skill}
-              </Badge>
-            ))}
-          </div>
+          {/* "My Tech Stack" label and badges removed from here */}
         </div>
       </div>
 

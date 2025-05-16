@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Wifi, BatteryFull, Signal, Home, GraduationCap, Briefcase, Award, Mail, Settings as SettingsIcon, UserCircle } from 'lucide-react';
+import { Wifi, BatteryFull, Home, GraduationCap, Briefcase, Award, Mail } from 'lucide-react';
 import ClientOnlyTime from '@/components/client-only-time';
 import ThemeToggleButton from '@/components/theme-toggle-button';
 import { Button } from '@/components/ui/button';
@@ -14,12 +14,9 @@ interface MobileLayoutProps {
 
 const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
   const [mobileTheme, setMobileTheme] = useState<'light' | 'dark'>('light');
-  // For now, activeTab can be hardcoded or managed with a simple state if routing isn't set up.
-  // Let's assume 'Home' is active for this step.
   const [activeTab, setActiveTab] = useState('Home');
 
 
-  // Placeholder for default content if no children are passed
   const defaultContent = (
     <>
       <h1 className="text-2xl font-semibold text-primary mt-4">Sumant's Portfolio App</h1>
@@ -53,24 +50,23 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             mobileTheme === 'dark' ? 'theme-mobile-dark' : ''
           )}
         >
-          {/* Status Bar - Made transparent by removing explicit background */}
-          <div className="h-12 px-4 sm:px-6 flex items-center justify-between text-sm font-medium text-foreground/80 pt-5 z-10 shrink-0">
+          {/* Status Bar - Made transparent */}
+          <div className="h-12 px-2 sm:px-3 flex items-center justify-between text-sm font-medium text-foreground/80 pt-5 z-10 shrink-0">
             <ClientOnlyTime />
             <div className="flex items-center space-x-1.5 p-1 rounded-full bg-muted/50">
               <ThemeToggleButton 
                 currentTheme={mobileTheme} 
                 setTheme={setMobileTheme}
                 iconSize={14} 
-                className="w-6 h-6 text-foreground" // Ensure icon color contrasts with chip
+                className="w-6 h-6 text-foreground" 
               />
-              <Signal size={14} aria-label="Signal strength" className="text-foreground" />
               <Wifi size={14} aria-label="Wifi connection" className="text-foreground" />
               <BatteryFull size={16} aria-label="Battery full" className="text-foreground" />
             </div>
           </div>
 
           {/* App Content Area */}
-          <div className="flex-grow p-4 pt-2 overflow-y-auto pb-16"> {/* Added pb-16 for bottom nav clearance */}
+          <div className="flex-grow p-4 pt-2 overflow-y-auto overflow-x-hidden pb-16">
             {children ? children : defaultContent}
           </div>
 
