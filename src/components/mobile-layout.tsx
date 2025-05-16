@@ -33,7 +33,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') { // Ensure localStorage is available
+    if (typeof window !== 'undefined') { 
         localStorage.setItem('mobileTheme', mobileTheme);
     }
   }, [mobileTheme]);
@@ -82,15 +82,17 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             <div className="w-[100px] shrink-0"></div>
             {/* Right "Ear" - Icons */}
             <div className="flex-1 flex justify-center items-center">
-              <div className="flex items-center space-x-1 p-1.5 rounded-full bg-muted/30">
-                <ThemeToggleButton
-                  currentTheme={mobileTheme}
-                  setTheme={setMobileTheme}
-                  iconSize={16}
-                  className="w-6 h-6 text-foreground"
-                />
+              <div className="flex items-center space-x-2"> {/* Adjusted spacing */}
                 <Wifi size={16} aria-label="WiFi status" className="text-foreground" />
                 <BatteryFull size={16} aria-label="Battery full" className="text-foreground" />
+                <div className="p-1 rounded-full bg-muted/30"> {/* Chip for ThemeToggle */}
+                  <ThemeToggleButton
+                    currentTheme={mobileTheme}
+                    setTheme={setMobileTheme}
+                    iconSize={16}
+                    className="w-6 h-6 text-foreground" 
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -163,3 +165,4 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
 };
 
 export default MobileLayout;
+
