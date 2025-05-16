@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Phone, Briefcase, Zap, Code, Users, Palette } from 'lucide-react'; 
+import { Mail, Phone, Briefcase, Zap, Code, Users, Palette, Brain, Lightbulb } from 'lucide-react'; 
 
 const techStack = [
   "Kotlin", "Jetpack Compose", "Android Studio", "Firebase", "REST APIs",
@@ -37,7 +37,7 @@ const HomePageContent: React.FC = () => {
             <h1 className="text-3xl font-bold text-foreground mb-1">
               Hi! I'm Sumant Mourya 👋
             </h1>
-            <div className="flex items-center justify-center text-accent font-semibold mb-2 h-9 text-xl">
+            <div className="flex items-center justify-center text-accent font-semibold mb-2 h-12 text-3xl">
               <span>{techStack[currentSkillIndex]}</span>
             </div>
             <p className="text-base text-muted-foreground mb-3 max-w-md">
@@ -58,7 +58,7 @@ const HomePageContent: React.FC = () => {
           </CardHeader>
           <CardContent className="p-3 pt-0">
             <div className="mb-1">
-              <h3 className="text-xl font-semibold text-accent mb-2 text-center">Core Technologies</h3>
+              <h3 className="text-lg font-semibold text-accent mb-2 text-center">Core Technologies</h3>
               <div className="flex flex-wrap justify-center items-center gap-1.5 px-1">
                 {techStack.map((skill) => (
                   <Badge key={skill} variant="outline" className="shadow-sm px-2.5 py-1 text-lg border-primary/50 text-foreground hover:bg-primary/10">
