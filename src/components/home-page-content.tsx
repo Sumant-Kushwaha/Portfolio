@@ -38,7 +38,7 @@ const HomePageContent: React.FC = () => {
               Hi! I'm Sumant Mourya 👋
             </h1>
             {/* Looping text will now show skills from techStack */}
-            <div className="flex items-center justify-center text-xl text-accent font-semibold mb-3 h-10">
+            <div className="flex items-center justify-center text-accent font-semibold mb-3 h-8 text-lg">
               {/* Icons specific to old skills removed */}
               <span>{techStack[currentSkillIndex]}</span>
             </div>
