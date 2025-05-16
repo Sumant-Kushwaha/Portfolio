@@ -11,7 +11,7 @@ import HomePageContent from '@/components/home-page-content';
 import EducationPageContent from '@/components/education-page-content';
 import ContactPageContent from '@/components/contact-page-content';
 import ExperiencePageContent from '@/components/experience-page-content';
-import ProjectsPageContent from '@/components/projects-page-content'; // Import the new component
+import ProjectsPageContent from '@/components/projects-page-content'; 
 
 
 interface MobileLayoutProps {
@@ -31,7 +31,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
         return <EducationPageContent />;
       case 'Experience':
         return <ExperiencePageContent />;
-      case 'Projects': // Add case for Projects
+      case 'Projects': 
         return <ProjectsPageContent />;
       case 'Contact':
         return <ContactPageContent />;
@@ -45,7 +45,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
       {/* Phone Bezel */}
       <div className="relative w-full max-w-[410px] aspect-[410/844] h-auto max-h-full bg-neutral-800 dark:bg-neutral-900 rounded-[60px] shadow-2xl p-3 border-4 border-neutral-700 dark:border-neutral-800">
         {/* Notch physical overlay */}
-        <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[130px] h-7 bg-neutral-800 dark:bg-neutral-900 rounded-b-2xl z-20">
+        <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[130px] h-7 bg-neutral-800 dark:bg-neutral-900 rounded-full z-20">
           <div className="w-12 h-1.5 bg-neutral-600 dark:bg-neutral-700 rounded-full mx-auto mt-2.5"></div>
         </div>
 
