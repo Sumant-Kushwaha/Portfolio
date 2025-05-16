@@ -60,13 +60,12 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
                 iconSize={14} 
                 className="w-6 h-6 text-foreground" 
               />
-              <Wifi size={14} aria-label="Wifi connection" className="text-foreground" />
               <BatteryFull size={16} aria-label="Battery full" className="text-foreground" />
             </div>
           </div>
 
           {/* App Content Area */}
-          <div className="flex-grow p-4 pt-2 overflow-y-auto overflow-x-hidden pb-16">
+          <div className="flex-grow p-4 pt-2 overflow-y-hidden overflow-x-hidden pb-16">
             {children ? children : defaultContent}
           </div>
 
