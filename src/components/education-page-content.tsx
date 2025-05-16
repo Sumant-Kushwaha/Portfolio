@@ -6,7 +6,7 @@ import { CalendarDays, MapPin } from "lucide-react";
 
 const EducationPageContent: React.FC = () => {
   return (
-    <div className="flex flex-col space-y-1">
+    <div className="flex flex-col space-y-2.5">
       <h2 className="text-xl font-semibold text-primary mb-2 text-center">My Education</h2>
 
       {/* First Education Card: BCA */}

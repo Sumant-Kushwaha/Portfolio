@@ -32,7 +32,7 @@ const HomePageContent: React.FC = () => {
   return (
     <div className="flex flex-col text-foreground">
       {/* Top Section (Personal Introduction) */}
-      <Card className="shadow-lg mb-6">
+      <Card className="shadow-lg mb-2.5">
         <CardContent className="p-4">
           <div className="flex flex-col items-center text-center">
             <Avatar className="w-24 h-24 mb-2 border-2 border-primary">
@@ -59,7 +59,7 @@ const HomePageContent: React.FC = () => {
       {/* Second Section Wrapped in Cards */}
       <div className="flex-grow">
         
-        <Card className="shadow-lg mb-6">
+        <Card className="shadow-lg mb-2.5">
           <CardHeader className="p-4">
             <CardTitle className="text-xl font-semibold text-primary text-center">Highlights & Skills</CardTitle>
           </CardHeader>
@@ -77,7 +77,7 @@ const HomePageContent: React.FC = () => {
           </CardContent>
         </Card>
 
-        <Card className="shadow-lg mb-6">
+        <Card className="shadow-lg mb-2.5">
           <CardContent className="p-3"> {/* Reduced padding for the grid card */}
             <div className="grid grid-cols-2 gap-2"> {/* Reduced gap */}
               <Card className="shadow-md bg-card"> {/* Reduced shadow for inner cards */}
@@ -132,7 +132,7 @@ const HomePageContent: React.FC = () => {
           </CardContent>
         </Card>
         
-        <Card className="shadow-lg mb-6">
+        <Card className="shadow-lg mb-2.5">
           <CardHeader className="p-4">
             <CardTitle className="text-lg font-semibold text-primary text-center">Get in Touch</CardTitle>
           </CardHeader>

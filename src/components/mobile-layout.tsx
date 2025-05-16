@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi, Signal } from 'lucide-react';
+import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi } from 'lucide-react';
 import ClientOnlyTime from '@/components/client-only-time';
 import ThemeToggleButton from '@/components/theme-toggle-button';
 import { Button } from '@/components/ui/button';
@@ -84,7 +84,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
 
           {/* App Content Area */}
           <div className={cn(
-            "flex-grow p-1 pt-1 overflow-y-auto overflow-x-hidden pb-[calc(4rem+0.25rem)] no-scrollbar"
+            "flex-grow p-2.5 pt-2.5 overflow-y-auto overflow-x-hidden pb-[calc(4rem+0.625rem)] no-scrollbar"
           )}>
             {renderContent()}
           </div>
