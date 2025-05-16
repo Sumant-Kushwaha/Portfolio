@@ -33,7 +33,6 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
       case 'Contact':
         return <ContactPageContent />;
       case 'Projects':
-      // case 'About': // Removed About
         return (
           <div className="p-4 text-center flex-grow flex flex-col justify-center items-center">
             <h2 className="text-5xl font-semibold text-primary">{activeTab}</h2>
@@ -48,7 +47,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
   return (
     <main className="flex justify-center items-center selection:bg-accent selection:text-accent-foreground w-full h-full">
       {/* Phone Bezel */}
-      <div className="relative w-full max-w-[390px] aspect-[390/844] h-auto max-h-full bg-neutral-800 dark:bg-neutral-900 rounded-[60px] shadow-2xl p-3 border-4 border-neutral-700 dark:border-neutral-800">
+      <div className="relative w-full max-w-[410px] aspect-[410/844] h-auto max-h-full bg-neutral-800 dark:bg-neutral-900 rounded-[60px] shadow-2xl p-3 border-4 border-neutral-700 dark:border-neutral-800">
         {/* Notch physical overlay */}
         <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[130px] h-7 bg-neutral-800 dark:bg-neutral-900 rounded-b-2xl z-20">
           <div className="w-12 h-1.5 bg-neutral-600 dark:bg-neutral-700 rounded-full mx-auto mt-2.5"></div>
