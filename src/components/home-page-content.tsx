@@ -53,10 +53,10 @@ const HomePageContent: React.FC = () => {
       <div className="flex-grow space-y-2.5">
         
         <Card className="shadow-lg mb-2.5">
-          <CardHeader className="p-3">
+          <CardHeader className="p-2">
             <CardTitle className="text-2xl font-semibold text-primary text-center">Highlights & Skills</CardTitle>
           </CardHeader>
-          <CardContent className="p-3 pt-0">
+          <CardContent className="p-2 pt-0">
             <div className="mb-1">
               <h3 className="text-lg font-semibold text-accent mb-2 text-center">Core Technologies</h3>
               <div className="flex flex-wrap justify-center items-center gap-1.5 px-1">
@@ -126,19 +126,27 @@ const HomePageContent: React.FC = () => {
         </Card>
         
         <Card className="shadow-lg mb-2.5">
-          <CardHeader className="p-3">
+          <CardHeader className="p-2">
             <CardTitle className="text-2xl font-semibold text-primary text-center">Get in Touch</CardTitle>
           </CardHeader>
-          <CardContent className="p-3 pt-0">
+          <CardContent className="p-2 pt-0">
             <div className="space-y-1.5"> 
-              <a href="mailto:SumantKushwaha.dev@gmail.com" className="flex items-center p-1.5 rounded-lg hover:bg-accent/10 transition-colors">
-                <Mail size={22} className="text-accent mr-2.5" /> 
-                <span className="text-xl text-foreground">SumantKushwaha.dev@gmail.com</span>
-              </a>
-              <a href="tel:+919939824083" className="flex items-center p-1.5 rounded-lg hover:bg-accent/10 transition-colors">
-                <Phone size={22} className="text-accent mr-2.5" />
-                <span className="text-xl text-foreground">+91 9939824083</span>
-              </a>
+              <Card className="p-0 shadow-sm hover:shadow-md transition-shadow bg-card">
+                <CardContent className="p-2">
+                  <a href="mailto:SumantKushwaha.dev@gmail.com" className="flex items-center transition-colors w-full">
+                    <Mail size={18} className="text-accent mr-2.5 flex-shrink-0" /> 
+                    <span className="text-base text-foreground">SumantKushwaha.dev@gmail.com</span>
+                  </a>
+                </CardContent>
+              </Card>
+              <Card className="p-0 shadow-sm hover:shadow-md transition-shadow bg-card">
+                <CardContent className="p-2">
+                  <a href="tel:+919939824083" className="flex items-center transition-colors w-full">
+                    <Phone size={18} className="text-accent mr-2.5 flex-shrink-0" />
+                    <span className="text-base text-foreground">+91 9939824083</span>
+                  </a>
+                </CardContent>
+              </Card>
             </div>
           </CardContent>
         </Card>
@@ -148,3 +156,5 @@ const HomePageContent: React.FC = () => {
 };
 
 export default HomePageContent;
+
+    
