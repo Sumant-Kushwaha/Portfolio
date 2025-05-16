@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi, MessageCircleMore, Info } from 'lucide-react';
+import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi, User } from 'lucide-react';
 import ClientOnlyTime from '@/components/client-only-time';
 import ThemeToggleButton from '@/components/theme-toggle-button';
 import { Button } from '@/components/ui/button';
@@ -59,7 +59,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           )}
         >
           {/* Status Bar Area */}
-          <div className="h-7 flex items-center justify-between text-2xl font-medium text-foreground z-10 shrink-0 mt-[5px] px-1">
+          <div className="h-7 flex items-center justify-between text-foreground z-10 shrink-0 mt-[5px] px-1">
             {/* Left "Ear" - Clock */}
             <div className="flex-1 flex justify-center items-center">
               <div className="bg-muted/30 p-1.5 rounded-full flex items-center">
@@ -74,11 +74,11 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
                 <ThemeToggleButton
                   currentTheme={mobileTheme}
                   setTheme={setMobileTheme}
-                  iconSize={14}
+                  iconSize={12}
                   className="w-6 h-6 text-foreground"
                 />
-                <Wifi size={14} aria-label="WiFi status" className="text-foreground" />
-                <BatteryFull size={14} aria-label="Battery full" className="text-foreground" />
+                <Wifi size={12} aria-label="WiFi status" className="text-foreground" />
+                <BatteryFull size={12} aria-label="Battery full" className="text-foreground" />
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Home')}
             >
               <Home size={20} />
-              <span className="text-sm mt-0.5">Home</span>
+              <span className="text-2xl mt-0.5">Home</span>
             </Button>
             <Button
               variant="ghost"
@@ -111,7 +111,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Projects')}
             >
               <Briefcase size={20} />
-              <span className="text-sm mt-0.5">Projects</span>
+              <span className="text-2xl mt-0.5">Projects</span>
             </Button>
             <Button
               variant="ghost"
@@ -121,7 +121,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Education')}
             >
               <GraduationCap size={20} />
-              <span className="text-sm mt-0.5">Education</span>
+              <span className="text-2xl mt-0.5">Education</span>
             </Button>
             <Button
               variant="ghost"
@@ -131,7 +131,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Experience')}
             >
               <Award size={20} />
-              <span className="text-sm mt-0.5">Experience</span>
+              <span className="text-2xl mt-0.5">Experience</span>
             </Button>
             <Button
               variant="ghost"
@@ -141,7 +141,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab('Contact')}
             >
               <Mail size={20} />
-              <span className="text-sm mt-0.5">Contact</span>
+              <span className="text-2xl mt-0.5">Contact</span>
             </Button>
           </div>
         </div>
