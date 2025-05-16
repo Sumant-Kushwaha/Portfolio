@@ -11,6 +11,7 @@ import HomePageContent from '@/components/home-page-content';
 import EducationPageContent from '@/components/education-page-content';
 import ContactPageContent from '@/components/contact-page-content';
 import ExperiencePageContent from '@/components/experience-page-content';
+import ProjectsPageContent from '@/components/projects-page-content'; // Import the new component
 
 
 interface MobileLayoutProps {
@@ -30,15 +31,10 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
         return <EducationPageContent />;
       case 'Experience':
         return <ExperiencePageContent />;
+      case 'Projects': // Add case for Projects
+        return <ProjectsPageContent />;
       case 'Contact':
         return <ContactPageContent />;
-      case 'Projects':
-        return (
-          <div className="p-4 text-center flex-grow flex flex-col justify-center items-center">
-            <h2 className="text-5xl font-semibold text-primary">{activeTab}</h2>
-            <p className="text-muted-foreground mt-2 text-3xl">Content for {activeTab} is coming soon!</p>
-          </div>
-        );
       default:
         return <HomePageContent />;
     }
