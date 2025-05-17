@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { BatteryFull, Home, GraduationCap, Briefcase, Award, Mail, Wifi } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Home, GraduationCap, Briefcase, Award, Mail, Wifi } from 'lucide-react';
+import { BatteryFull } from 'lucide-react';
 import ClientOnlyTime from '@/components/client-only-time';
 import ThemeToggleButton from '@/components/theme-toggle-button';
 import { Button } from '@/components/ui/button';
@@ -19,6 +20,34 @@ interface MobileLayoutProps {
 const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
   const [mobileTheme, setMobileTheme] = useState<'light' | 'dark'>('dark');
   const [activeTab, setActiveTab] = useState('Home');
+  const [toast, setToast] = useState({ visible: false, text: '', position: { top: 0, left: 0 } });
+  const toastTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Function to show toast notification above the clicked icon
+  const showToast = (e: React.MouseEvent, text: string) => {
+    // Clear any existing timeout
+    if (toastTimeoutRef.current) {
+      clearTimeout(toastTimeoutRef.current);
+    }
+
+    // Get the position of the clicked button
+    const buttonRect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+    
+    // Set toast state with the button's horizontal position
+    setToast({
+      visible: true,
+      text,
+      position: { 
+        top: 0, // We'll use fixed positioning with bottom instead of top
+        left: buttonRect.left + buttonRect.width / 2 
+      }
+    });
+    
+    // Hide toast after 1.5 seconds
+    toastTimeoutRef.current = setTimeout(() => {
+      setToast((prev) => ({ ...prev, visible: false }));
+    }, 1500);
+  };
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('mobileTheme') as 'light' | 'dark' | null;
@@ -77,7 +106,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
 
             <div className="flex-1 flex justify-end items-center space-x-2">
               <Wifi size={16} aria-label="WiFi status" className="text-foreground" />
-              <BatteryFull size={16} aria-label="Battery full" className="text-foreground" />
+              <BatteryFull size={20} aria-label="Battery full" className="text-foreground" fill="currentColor" />
               <div className="p-1 rounded-full bg-muted/30">
                 <ThemeToggleButton
                   currentTheme={mobileTheme}
@@ -101,6 +130,21 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           </div>
 
 
+          {/* Toast Notification */}
+          {toast.visible && (
+            <div 
+              className="fixed z-50 px-2 py-1 text-xs font-medium text-white bg-black/80 rounded-md animate-in fade-in slide-in-from-bottom-2 duration-200"
+              style={{ 
+                bottom: `${toast.position.top}px`, 
+                left: `${toast.position.left}px`,
+                transform: 'translate(-50%, -100%)',
+                marginBottom: '60px'
+              }}
+            >
+              {toast.text}
+            </div>
+          )}
+          
           {/* Bottom Navigation Bar (semi-transparent + blurred) */}
           <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-t-md bg-background/60 backdrop-blur-md border-t border-border/40">
             <Button
@@ -109,49 +153,68 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               title="Home"
               className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent"
               data-active={activeTab === "Home"}
-              onClick={() => setActiveTab("Home")}
+              onClick={(e) => {
+                setActiveTab("Home");
+                showToast(e, "Home");
+              }}
             >
-              <Home size={24} />
+              <Home size={20} />
               {/* <span className="text-sm mt-0.5">Home</span> */}
             </Button>
             <Button
               variant="ghost"
               size="icon"
+              title="Projects"
               className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent"
               data-active={activeTab === "Projects"}
-              onClick={() => setActiveTab("Projects")}
+              onClick={(e) => {
+                setActiveTab("Projects");
+                showToast(e, "Projects");
+              }}
             >
-              <Briefcase size={24} />
+              <Briefcase size={20} />
               {/* <span className="text-sm mt-0.5">Projects</span> */}
             </Button>
             <Button
               variant="ghost"
               size="icon"
+              title="Education"
               className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent"
               data-active={activeTab === "Education"}
-              onClick={() => setActiveTab("Education")}
+              onClick={(e) => {
+                setActiveTab("Education");
+                showToast(e, "Education");
+              }}
             >
-              <GraduationCap size={24} />
+              <GraduationCap size={20} />
               {/* <span className="text-sm mt-0.5">Education</span> */}
             </Button>
             <Button
               variant="ghost"
               size="icon"
+              title="Experience"
               className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent"
               data-active={activeTab === "Experience"}
-              onClick={() => setActiveTab("Experience")}
+              onClick={(e) => {
+                setActiveTab("Experience");
+                showToast(e, "Experience");
+              }}
             >
-              <Award size={24} />
+              <Award size={20} />
               {/* <span className="text-sm mt-0.5">Experience</span> */}
             </Button>
             <Button
               variant="ghost"
               size="icon"
+              title="Contact me"
               className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent"
               data-active={activeTab === "Contact"}
-              onClick={() => setActiveTab("Contact")}
+              onClick={(e) => {
+                setActiveTab("Contact");
+                showToast(e, "Contact");
+              }}
             >
-              <Mail size={32} />
+              <Mail size={20} />
               {/* <span className="text-sm mt-0.5">Contact</span> */}
             </Button>
           </div>
