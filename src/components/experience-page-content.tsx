@@ -15,7 +15,7 @@ const ExperiencePageContent: React.FC = () => {
 
   return (
     <div className="flex flex-col space-y-2.5">
-      <Card className="shadow-lg">
+      <Card>
         <CardHeader className="p-3 pb-1.5 bg-muted/30">
           <CardTitle className="text-3xl font-semibold text-primary text-center mb-2">
             {experiencePageContent.pageTitle}

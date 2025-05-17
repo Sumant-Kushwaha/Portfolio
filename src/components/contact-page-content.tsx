@@ -74,7 +74,7 @@ const ContactPageContent: React.FC = () => {
 
   return (
     <div className="flex flex-col space-y-2.5">
-      <Card className="shadow-lg">
+      <Card>
         <CardHeader className="p-3 bg-muted/30">
           <CardTitle className="text-2xl font-bold text-foreground text-center flex flex-col items-center justify-center">
             {ContactInfoIcon && <ContactInfoIcon size={64} className="mb-2 text-accent" />}
@@ -111,7 +111,7 @@ const ContactPageContent: React.FC = () => {
         </CardContent>
       </Card>
 
-      <Card className="shadow-lg">
+      <Card>
         <CardHeader className="p-3 bg-muted/30">
           <CardTitle className="text-2xl font-bold text-foreground text-center flex flex-col items-center justify-center">
              {ContactFormIcon && <ContactFormIcon size={64} className="mb-2 text-accent" />}

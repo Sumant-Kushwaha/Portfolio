@@ -63,14 +63,14 @@ const HomePageContent: React.FC = () => {
 
   return (
     <div className="flex flex-col text-foreground space-y-2.5">
-      <Card className="shadow-lg">
+      <Card>
         <CardContent className="p-3">
           <div className="flex flex-col items-center text-center">
             <Avatar className="w-20 h-20 mb-2 border-2 border-primary">
               <AvatarImage 
                 src={homePageContent.avatarImageSrc} 
                 alt={homePageContent.avatarAltText} 
-                data-ai-hint={homePageContent.avatarDataAiHint} 
+                data-ai-hint={homePageContent.avatarDataAiHint}
               />
               <AvatarFallback className="text-2xl">{homePageContent.avatarFallback}</AvatarFallback>
             </Avatar>
@@ -88,7 +88,7 @@ const HomePageContent: React.FC = () => {
         </CardContent>
       </Card>
 
-      <Card className="shadow-lg">
+      <Card>
           <CardHeader className="p-2 bg-muted/30">
             <CardTitle className="text-2xl font-semibold text-primary text-center">{homePageContent.highlightsTitle}</CardTitle>
           </CardHeader>
@@ -106,7 +106,7 @@ const HomePageContent: React.FC = () => {
           </CardContent>
         </Card>
 
-        <Card className="shadow-lg">
+        <Card>
           <CardContent className="p-2"> 
             <div className="grid grid-cols-2 gap-2"> 
               {homePageContent.stats.map((stat) => {
@@ -130,7 +130,7 @@ const HomePageContent: React.FC = () => {
           </CardContent>
         </Card>
         
-        <Card className="shadow-lg">
+        <Card>
           <CardHeader className="p-2 bg-muted/30">
             <CardTitle className="text-2xl font-semibold text-primary text-center">{homePageContent.getInTouchTitle}</CardTitle>
           </CardHeader>
