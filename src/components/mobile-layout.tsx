@@ -11,33 +11,30 @@ import HomePageContent from '@/components/home-page-content';
 import EducationPageContent from '@/components/education-page-content';
 import ContactPageContent from '@/components/contact-page-content';
 import ExperiencePageContent from '@/components/experience-page-content';
-import ProjectsPageContent from '@/components/projects-page-content'; 
-import FloatingResumeButton from '@/components/floating-resume-button'; // Import the FAB
+import ProjectsPageContent from '@/components/projects-page-content';
+import FloatingResumeButton from '@/components/floating-resume-button';
 
 interface MobileLayoutProps {
-  children?: React.ReactNode; // children is not strictly used if we always render content based on activeTab
+  children?: React.ReactNode;
 }
 
 const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
-  const [mobileTheme, setMobileTheme] = useState<'light' | 'dark'>('light'); 
+  const [mobileTheme, setMobileTheme] = useState<'light' | 'dark'>('dark'); // Default to dark
   const [activeTab, setActiveTab] = useState('Home');
 
   useEffect(() => {
-    const storedMobileTheme = localStorage.getItem('mobileTheme') as 'light' | 'dark' | null;
-    if (storedMobileTheme && (storedMobileTheme === 'light' || storedMobileTheme === 'dark')) {
-      setMobileTheme(storedMobileTheme);
-    } else {
-      if (typeof window !== 'undefined') {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const initialTheme = prefersDark ? 'dark' : 'light';
-        setMobileTheme(initialTheme);
-        localStorage.setItem('mobileTheme', initialTheme);
-      }
+    // Load theme from localStorage
+    const storedTheme = localStorage.getItem('mobileTheme') as 'light' | 'dark' | null;
+    if (storedTheme === 'light' || storedTheme === 'dark') {
+      setMobileTheme(storedTheme);
     }
-  }, []);
+    // If nothing in localStorage, mobileTheme remains 'dark' (from useState).
+    // The subsequent useEffect will save this.
+  }, []); // Runs once on mount for loading theme
 
+  // Save theme to localStorage whenever it changes
   useEffect(() => {
-    if (typeof window !== 'undefined' && mobileTheme) { 
+    if (typeof window !== 'undefined' && mobileTheme) {
         localStorage.setItem('mobileTheme', mobileTheme);
     }
   }, [mobileTheme]);
@@ -47,7 +44,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
     switch (activeTab) {
       case 'Home':
         return <HomePageContent />;
-      case 'Projects': 
+      case 'Projects':
         return <ProjectsPageContent />;
       case 'Education':
         return <EducationPageContent />;
@@ -93,7 +90,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
                         currentTheme={mobileTheme}
                         setTheme={setMobileTheme}
                         iconSize={16}
-                        className="w-6 h-6 text-foreground" 
+                        className="w-6 h-6 text-foreground"
                     />
                 </div>
             </div>
@@ -102,15 +99,15 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
 
           {/* App Content Area */}
           <div
-            key={activeTab} 
+            key={activeTab}
             className={cn(
             "flex-grow p-2.5 pt-2.5 overflow-y-auto overflow-x-hidden pb-[calc(4rem+0.625rem)] no-scrollbar",
             "animate-in fade-in slide-in-from-bottom-4 duration-300 ease-out"
           )}>
             {renderContent()}
           </div>
-          
-          <FloatingResumeButton /> {/* Add the FAB here, inside mobile screen context */}
+
+          <FloatingResumeButton />
 
           {/* Bottom Navigation Bar - Translucent */}
           <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-t-md bg-background/70 backdrop-blur-sm">

@@ -7,7 +7,7 @@ import MobileLayout from '@/components/mobile-layout';
 import ThemeToggleButton from '@/components/theme-toggle-button';
 import HomePageContent from '@/components/home-page-content';
 import { Toaster } from "@/components/ui/toaster";
-// FloatingResumeButton is now moved to MobileLayout
+import FloatingResumeButton from '@/components/floating-resume-button';
 
 interface HomePageProps {
   params?: Record<string, string | string[]>;
@@ -17,37 +17,35 @@ interface HomePageProps {
 export default function Home({ params, searchParams }: HomePageProps) {
   const [showSplash, setShowSplash] = useState(true);
   const [fadeOutSplash, setFadeOutSplash] = useState(false);
-  const [outsideTheme, setOutsideTheme] = useState<'light' | 'dark'>('light');
+  const [outsideTheme, setOutsideTheme] = useState<'light' | 'dark'>('dark'); // Default to dark
 
   useEffect(() => {
-    const storedOutsideTheme = localStorage.getItem('outsideTheme') as 'light' | 'dark' | null;
-    if (storedOutsideTheme && (storedOutsideTheme === 'light' || storedOutsideTheme === 'dark')) {
-      setOutsideTheme(storedOutsideTheme);
-    } else {
-      if (typeof window !== 'undefined') {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const initialTheme = prefersDark ? 'dark' : 'light';
-        setOutsideTheme(initialTheme);
-        localStorage.setItem('outsideTheme', initialTheme); 
-      }
+    // Load theme from localStorage
+    const storedTheme = localStorage.getItem('outsideTheme') as 'light' | 'dark' | null;
+    if (storedTheme === 'light' || storedTheme === 'dark') {
+      setOutsideTheme(storedTheme);
     }
+    // If no valid theme in localStorage, 'outsideTheme' remains 'dark' due to useState.
+    // The separate useEffect [outsideTheme] will handle saving it.
 
+    // Splash screen logic
     const fadeTimer = setTimeout(() => {
       setFadeOutSplash(true);
-    }, 2500); 
+    }, 2500);
 
     const removeTimer = setTimeout(() => {
       setShowSplash(false);
-    }, 3000); 
+    }, 3000);
 
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(removeTimer);
     };
-  }, []);
+  }, []); // Runs once on mount for loading theme and splash logic
 
+  // Save theme to localStorage whenever it changes
   useEffect(() => {
-    if (typeof window !== 'undefined' && outsideTheme) { 
+    if (typeof window !== 'undefined' && outsideTheme) {
         localStorage.setItem('outsideTheme', outsideTheme);
     }
   }, [outsideTheme]);
@@ -55,7 +53,7 @@ export default function Home({ params, searchParams }: HomePageProps) {
   const mainContent = (
     <div className="flex justify-center items-center flex-grow p-4 h-full">
       <MobileLayout>
-        <HomePageContent /> 
+        <HomePageContent />
       </MobileLayout>
     </div>
   );
@@ -65,15 +63,18 @@ export default function Home({ params, searchParams }: HomePageProps) {
       <div className="absolute top-4 right-4 z-[51]">
         <ThemeToggleButton currentTheme={outsideTheme} setTheme={setOutsideTheme} iconSize={24} />
       </div>
-      
+
       {showSplash ? (
         <div className={`fixed inset-0 flex flex-col items-center justify-center ${fadeOutSplash ? 'animate-fadeOut' : 'animate-fadeIn'}`}>
           <SplashScreen />
         </div>
       ) : mainContent }
-      
+
       <Toaster />
-      {/* FloatingResumeButton removed from here */}
+      {/* FloatingResumeButton was moved to MobileLayout, but let's ensure it's not here if it should be outside */}
+      {/* If the FAB should be outside the mobile screen, it should be here. */}
+      {/* Based on previous request to put it *inside* phone screen, it's correctly in MobileLayout. */}
+      {/* This comment block is just for thought process clarity for the AI. */}
     </div>
   );
 }
