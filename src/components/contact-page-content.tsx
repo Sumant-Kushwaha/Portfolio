@@ -4,8 +4,19 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Mail, Phone, Send, User as UserIcon, MessageSquare, Info, MessageCircleMore } from "lucide-react";
+import { Mail, Phone, Send, User as UserIcon, MessageSquare, Info, MessageCircleMore, Loader2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
+
+// Initialize EmailJS
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+
+if (EMAILJS_PUBLIC_KEY) {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+}
 
 import { Button } from "@/components/ui/button";
 import {
@@ -50,6 +61,8 @@ const iconMap: { [key: string]: LucideIcon } = {
 const ContactPageContent: React.FC = () => {
   const { toast } = useToast();
   const { contactInfo, contactForm } = contactPageContent;
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
 
   const ContactInfoIcon = iconMap[contactInfo.iconName];
   const ContactFormIcon = iconMap[contactForm.iconName];
@@ -63,13 +76,46 @@ const ContactPageContent: React.FC = () => {
     },
   });
 
-  function onSubmit(data: ContactFormValues) {
-    console.log("Form submitted:", data);
-    toast({
-      title: contactForm.toastTitle,
-      description: contactForm.toastDescription,
-    });
-    form.reset();
+  async function onSubmit(data: ContactFormValues) {
+    setIsSubmitting(true);
+    
+    try {
+      if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+        console.error('EmailJS Config:', {
+          serviceId: EMAILJS_SERVICE_ID,
+          templateId: EMAILJS_TEMPLATE_ID,
+          publicKey: EMAILJS_PUBLIC_KEY
+        });
+        throw new Error('EmailJS configuration is missing');
+      }
+      
+      const templateParams = {
+        from_name: data.fullName,
+        from_email: data.email,
+        message: data.message,
+        to_name: "Sumant Kushwaha",
+        reply_to: data.email
+      };
+      
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+      
+      toast({
+        title: contactForm.toastTitle,
+        description: contactForm.toastDescription,
+        variant: "default"
+      });
+      
+      form.reset();
+    } catch (error) {
+      console.error("Error sending email:", error);
+      toast({
+        title: "Message Failed",
+        description: "There was an error sending your message. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -176,9 +222,18 @@ const ContactPageContent: React.FC = () => {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full h-9 text-sm">
-                <Send size={16} className="mr-2" />
-                {contactForm.submitButtonText}
+              <Button type="submit" className="w-full h-9 text-sm" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 size={16} className="mr-2 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} className="mr-2" />
+                    {contactForm.submitButtonText}
+                  </>
+                )}
               </Button>
             </form>
           </Form>
