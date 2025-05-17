@@ -6,7 +6,8 @@ import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Phone, Briefcase, Zap, Users, Code as CodeIcon } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Mail, Phone, Briefcase, Zap, Users, Code as CodeIcon, Download } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { homePageContent } from '@/data/home-content';
 
@@ -67,12 +68,12 @@ const HomePageContent: React.FC = () => {
         <CardContent className="p-3">
           <div className="flex flex-col items-center text-center">
             <Avatar className="w-20 h-20 mb-2 border-2 border-primary">
-              <AvatarImage 
-                src={homePageContent.avatarImageSrc} 
-                alt={homePageContent.avatarAltText} 
+              <AvatarImage
+                src={homePageContent.avatarImageSrc}
+                alt={homePageContent.avatarAltText}
                 data-ai-hint={homePageContent.avatarDataAiHint}
               />
-              <AvatarFallback className="text-2xl">{homePageContent.avatarFallback}</AvatarFallback>
+              <AvatarFallback className="text-3xl">{homePageContent.avatarFallback}</AvatarFallback>
             </Avatar>
             <h1 className="text-3xl font-bold text-foreground mb-1">
               {homePageContent.greeting}
@@ -89,10 +90,10 @@ const HomePageContent: React.FC = () => {
       </Card>
 
       <Card>
-          <CardHeader className="p-2 bg-muted/30">
+          <CardHeader className="p-3 bg-muted/30">
             <CardTitle className="text-2xl font-semibold text-primary text-center">{homePageContent.highlightsTitle}</CardTitle>
           </CardHeader>
-          <CardContent className="p-2 pt-0">
+          <CardContent className="p-3 pt-1">
             <div className="mb-1">
               <h3 className="text-lg font-semibold text-accent mb-2 text-center">{homePageContent.coreTechTitle}</h3>
               <div className="flex flex-wrap justify-center items-center gap-1.5 px-1">
@@ -107,20 +108,20 @@ const HomePageContent: React.FC = () => {
         </Card>
 
         <Card>
-          <CardContent className="p-2"> 
-            <div className="grid grid-cols-2 gap-2"> 
+          <CardContent className="p-3">
+            <div className="grid grid-cols-2 gap-2.5">
               {homePageContent.stats.map((stat) => {
                 const StatIcon = iconMap[stat.iconName];
                 return (
-                  <Card key={stat.id} className="shadow-md bg-card"> 
+                  <Card key={stat.id} className="shadow-md bg-card">
                     <CardHeader className="p-2 pb-1 bg-muted/30">
-                      <CardTitle className="text-lg font-semibold text-center flex flex-col items-center gap-1"> 
+                      <CardTitle className="text-lg font-semibold text-center flex flex-col items-center gap-1">
                         {StatIcon && <StatIcon size={20} className="text-primary" />}
                         {stat.title}
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="p-2 pt-0 text-center">
-                      <p className="text-2xl font-bold text-accent">{stat.value}</p> 
+                      <p className="text-2xl font-bold text-accent">{stat.value}</p>
                       <p className="text-sm text-muted-foreground">{stat.subValue}</p>
                     </CardContent>
                   </Card>
@@ -129,17 +130,17 @@ const HomePageContent: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
-          <CardHeader className="p-2 bg-muted/30">
+          <CardHeader className="p-3 bg-muted/30">
             <CardTitle className="text-2xl font-semibold text-primary text-center">{homePageContent.getInTouchTitle}</CardTitle>
           </CardHeader>
-          <CardContent className="p-2 pt-0">
-            <div className="space-y-1.5"> 
+          <CardContent className="p-3 pt-1">
+            <div className="space-y-1.5">
               <Card className="p-0 shadow-sm hover:shadow-md transition-shadow bg-card">
                 <CardContent className="p-2">
                   <a href={`mailto:${homePageContent.email}`} className="flex items-center transition-colors w-full">
-                    <Mail size={18} className="text-accent mr-2.5 flex-shrink-0" /> 
+                    <Mail size={18} className="text-accent mr-2.5 flex-shrink-0" />
                     <span className="text-base text-foreground">{homePageContent.email}</span>
                   </a>
                 </CardContent>
@@ -155,6 +156,15 @@ const HomePageContent: React.FC = () => {
             </div>
           </CardContent>
         </Card>
+
+        {homePageContent.resumeDownloadLink && (
+          <Button asChild variant="outline" className="w-full text-base h-11 mt-2.5">
+            <a href={homePageContent.resumeDownloadLink} download target="_blank" rel="noopener noreferrer">
+              <Download size={18} className="mr-2" />
+              Download Resume
+            </a>
+          </Button>
+        )}
     </div>
   );
 };
