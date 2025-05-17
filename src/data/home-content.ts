@@ -22,6 +22,7 @@ export interface HomePageData {
   getInTouchTitle: string;
   email: string;
   phone: string;
+  resumeDownloadLink: string; // Added for resume download
 }
 
 const techStack: string[] = [
@@ -50,4 +51,5 @@ export const homePageContent: HomePageData = {
   getInTouchTitle: "Get in Touch",
   email: "SumantKushwaha.dev@gmail.com",
   phone: "+91 9939824083",
+  resumeDownloadLink: "/resume-placeholder.pdf", // Example link
 };

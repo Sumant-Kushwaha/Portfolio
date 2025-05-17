@@ -7,6 +7,7 @@ import MobileLayout from '@/components/mobile-layout';
 import ThemeToggleButton from '@/components/theme-toggle-button';
 import HomePageContent from '@/components/home-page-content';
 import { Toaster } from "@/components/ui/toaster";
+import FloatingResumeButton from '@/components/floating-resume-button'; // Import the new button
 
 interface HomePageProps {
   params?: Record<string, string | string[]>;
@@ -16,19 +17,21 @@ interface HomePageProps {
 export default function Home({ params, searchParams }: HomePageProps) {
   const [showSplash, setShowSplash] = useState(true);
   const [fadeOutSplash, setFadeOutSplash] = useState(false);
-  const [outsideTheme, setOutsideTheme] = useState<'light' | 'dark'>('light'); // Default for SSR
+  const [outsideTheme, setOutsideTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
-    // Load stored theme or detect system preference for outside theme
     const storedOutsideTheme = localStorage.getItem('outsideTheme') as 'light' | 'dark' | null;
-    if (storedOutsideTheme) {
+    if (storedOutsideTheme && (storedOutsideTheme === 'light' || storedOutsideTheme === 'dark')) {
       setOutsideTheme(storedOutsideTheme);
     } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setOutsideTheme(prefersDark ? 'dark' : 'light');
+      if (typeof window !== 'undefined') {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initialTheme = prefersDark ? 'dark' : 'light';
+        setOutsideTheme(initialTheme);
+        localStorage.setItem('outsideTheme', initialTheme); // Save initial if not found
+      }
     }
 
-    // Splash screen logic
     const fadeTimer = setTimeout(() => {
       setFadeOutSplash(true);
     }, 2500); 
@@ -41,12 +44,10 @@ export default function Home({ params, searchParams }: HomePageProps) {
       clearTimeout(fadeTimer);
       clearTimeout(removeTimer);
     };
-  }, []); // Empty dependency array: runs once on mount
+  }, []);
 
   useEffect(() => {
-    // Save outsideTheme to localStorage whenever it changes
-    // This also covers the initial setting from system preference if localStorage was empty
-    if (typeof window !== 'undefined') { // Ensure localStorage is available
+    if (typeof window !== 'undefined' && outsideTheme) { 
         localStorage.setItem('outsideTheme', outsideTheme);
     }
   }, [outsideTheme]);
@@ -72,6 +73,7 @@ export default function Home({ params, searchParams }: HomePageProps) {
       ) : mainContent }
       
       <Toaster />
+      <FloatingResumeButton /> {/* Add the FAB here */}
     </div>
   );
 }
