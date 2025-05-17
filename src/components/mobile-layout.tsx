@@ -31,6 +31,8 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const initialTheme = prefersDark ? 'dark' : 'light';
         setMobileTheme(initialTheme);
+        // Also save this initial theme to localStorage if it wasn't found
+        localStorage.setItem('mobileTheme', initialTheme);
       }
     }
   }, []);
@@ -38,8 +40,9 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
   useEffect(() => {
     if (typeof window !== 'undefined' && mobileTheme) { 
         localStorage.setItem('mobileTheme', mobileTheme);
-        document.documentElement.classList.remove('theme-mobile-light', 'theme-mobile-dark');
-        document.documentElement.classList.add(`theme-mobile-${mobileTheme}`);
+        // Apply theme class to a specific container if needed, or html/body
+        // document.documentElement.classList.remove('theme-mobile-light', 'theme-mobile-dark');
+        // document.documentElement.classList.add(`theme-mobile-${mobileTheme}`);
     }
   }, [mobileTheme]);
 
@@ -64,7 +67,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
   return (
     <main className="flex justify-center items-center selection:bg-accent selection:text-accent-foreground w-full h-full">
       {/* Phone Bezel */}
-      <div className="relative w-full max-w-[410px] aspect-[410/844] h-auto max-h-full bg-neutral-800 dark:bg-neutral-900 rounded-[70px] shadow-2xl p-2.5 border border-neutral-700 dark:border-neutral-800">
+      <div className="relative w-full max-w-[410px] aspect-[410/844] h-auto max-h-full bg-neutral-800 dark:bg-neutral-900 rounded-[50px] shadow-2xl p-2.5 border border-neutral-700 dark:border-neutral-800">
         {/* Notch physical overlay */}
         <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-[100px] h-6 bg-neutral-800 dark:bg-neutral-900 rounded-full z-20">
           <div className="w-10 h-1 bg-neutral-600 dark:bg-neutral-700 rounded-full mx-auto mt-2.5"></div>
@@ -73,7 +76,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
         {/* Inner Screen */}
         <div
           className={cn(
-            "w-full h-full rounded-[58px] overflow-hidden shadow-inner flex flex-col mobile-theme-container",
+            "w-full h-full rounded-[40px] overflow-hidden shadow-inner flex flex-col mobile-theme-container",
             mobileTheme === 'dark' ? 'theme-mobile-dark' : ''
           )}
         >
