@@ -13,34 +13,114 @@ import ContactPageContent from '@/components/contact-page-content';
 import ExperiencePageContent from '@/components/experience-page-content';
 import ProjectsPageContent from '@/components/projects-page-content';
 
-// Add global styles for animations
+// Add global styles for animations and Material You design elements
 const GlobalStyles = () => {
   return (
     <style jsx global>{`
+      /* Toast Animation */
       @keyframes popIn {
         0% { opacity: 0; transform: translate(-50%, -80%); }
+        50% { opacity: 1; transform: translate(-50%, -105%); }
+        75% { transform: translate(-50%, -95%); }
         100% { opacity: 1; transform: translate(-50%, -100%); }
       }
       
+      /* Pulse Animations */
       @keyframes pulse-subtle {
         0% { opacity: 0.9; }
         50% { opacity: 1; }
         100% { opacity: 0.9; }
       }
       
+      @keyframes pulse-scale {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+      
+      /* Background Animations */
       @keyframes slide-slow {
         0% { transform: translateX(-100%); }
         100% { transform: translateX(100%); }
       }
       
+      @keyframes float {
+        0% { transform: translateY(0) rotate(0); }
+        50% { transform: translateY(-10px) rotate(5deg); }
+        100% { transform: translateY(0) rotate(0); }
+      }
+      
+      @keyframes float-reverse {
+        0% { transform: translateY(0) rotate(0); }
+        50% { transform: translateY(-15px) rotate(-5deg); }
+        100% { transform: translateY(0) rotate(0); }
+      }
+      
+      @keyframes rotate-slow {
+        0% { transform: rotate(0); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Animation Classes */
       .animate-pulse-subtle {
         animation: pulse-subtle 2s infinite ease-in-out;
+      }
+      
+      .animate-pulse-scale {
+        animation: pulse-scale 3s infinite ease-in-out;
       }
       
       .animate-slide-slow {
         animation: slide-slow 8s infinite linear;
       }
       
+      .animate-float {
+        animation: float 6s infinite ease-in-out;
+      }
+      
+      .animate-float-reverse {
+        animation: float-reverse 7s infinite ease-in-out;
+      }
+      
+      .animate-rotate-slow {
+        animation: rotate-slow 20s infinite linear;
+      }
+      
+      /* Material You Style Elements */
+      .material-shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.2; /* Reduced opacity for better text visibility */
+        filter: blur(40px);
+        z-index: 0;
+        pointer-events: none; /* Ensure shapes don't interfere with touch */
+      }
+      
+      .theme-mobile-dark .material-shape.primary {
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      }
+      
+      .theme-mobile-dark .material-shape.secondary {
+        background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+      }
+      
+      .theme-mobile-dark .material-shape.tertiary {
+        background: linear-gradient(135deg, #14b8a6 0%, #0ea5e9 100%);
+      }
+      
+      .material-shape.primary {
+        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      }
+      
+      .material-shape.secondary {
+        background: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
+      }
+      
+      .material-shape.tertiary {
+        background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      }
+      
+      /* Navigation Indicators */
       .theme-mobile-dark .bottom-nav-active-indicator {
         background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
       }
@@ -54,6 +134,38 @@ const GlobalStyles = () => {
         border-radius: 3px;
         background: linear-gradient(90deg, #3b82f6, #8b5cf6, #d946ef);
         transform-origin: bottom center;
+      }
+      
+      /* Material You Style Nav Icons */
+      .nav-icon-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .nav-icon-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        opacity: 0;
+        transform: scale(0);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none; /* Ensure background doesn't interfere with touch */
+      }
+      
+      .theme-mobile-dark [data-active=true] .nav-icon-bg {
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, rgba(168, 85, 247, 0.15) 70%, transparent 100%);
+        opacity: 1;
+        transform: scale(1.3); /* Reduced scale to prevent touch interference */
+      }
+      
+      [data-active=true] .nav-icon-bg {
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(139, 92, 246, 0.15) 70%, transparent 100%);
+        opacity: 1;
+        transform: scale(1.3); /* Reduced scale to prevent touch interference */
       }
     `}</style>
   );
@@ -140,12 +252,16 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
         {/* Inner Screen */}
         <div
           className={cn(
-            "w-full h-full rounded-[40px] overflow-hidden shadow-inner flex flex-col mobile-theme-container",
+            "w-full h-full rounded-[40px] overflow-hidden shadow-inner flex flex-col mobile-theme-container relative",
             mobileTheme === "dark" ? "theme-mobile-dark bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900" : "bg-gradient-to-b from-gray-50 via-white to-gray-50"
           )}
         >
+          {/* Material You background shapes - with reduced size and opacity */}
+          <div className="material-shape primary animate-float" style={{ width: '200px', height: '200px', top: '15%', left: '15%' }}></div>
+          <div className="material-shape secondary animate-float-reverse" style={{ width: '150px', height: '150px', top: '50%', right: '10%' }}></div>
+          <div className="material-shape tertiary animate-float" style={{ width: '120px', height: '120px', bottom: '15%', left: '30%' }}></div>
           {/* Status Bar (semi-transparent + blurred) */}
-          <div className="relative h-10 flex items-center text-foreground z-10 shrink-0 px-5 bg-background/70 backdrop-blur-md border-b border-border/40">
+          <div className="relative h-10 flex items-center text-foreground z-10 shrink-0 px-5 bg-background/70 backdrop-blur-xl border-b border-border/40">
             <div className="flex-1 flex justify-start items-center">
               <ClientOnlyTime />
             </div>
@@ -170,7 +286,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           <div
             key={activeTab}
             className={cn(
-              "flex-grow p-2.5 pt-2.5 overflow-y-auto overflow-x-hidden pb-[calc(4rem+0.625rem)] no-scrollbar",
+              "flex-grow p-2.5 pt-2.5 overflow-y-auto overflow-x-hidden pb-[calc(4rem+0.625rem)] no-scrollbar relative z-10", /* Added z-index for better text visibility */
               "animate-in fade-in slide-in-from-bottom-4 duration-300 ease-out"
             )}
           >
@@ -181,13 +297,16 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           {/* Toast Notification */}
           {toast.visible && (
             <div 
-              className="fixed z-50 px-3 py-1.5 text-xs font-medium text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md shadow-lg"
+              className="fixed z-50 px-4 py-2 text-xs font-medium text-white rounded-full shadow-lg"
               style={{ 
+                background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%)',
                 bottom: `${toast.position.top}px`, 
                 left: `${toast.position.left}px`,
                 transform: 'translate(-50%, -100%)',
                 marginBottom: '60px',
-                animation: 'popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards'
+                animation: 'popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+                backdropFilter: 'blur(8px)',
+                border: '1px solid rgba(255, 255, 255, 0.1)'
               }}
             >
               <span className="inline-block animate-pulse-subtle">{toast.text}</span>
@@ -195,14 +314,15 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           )}
           
           {/* Bottom Navigation Bar (semi-transparent + blurred) */}
-          <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-lg bg-background/70 backdrop-blur-md border-t border-border/40 relative overflow-hidden">
-            {/* Animated background effect */}
+          <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-lg bg-background/85 backdrop-blur-md border-t border-border/40 relative overflow-hidden z-20"> {/* Increased opacity and z-index */}
+            {/* Animated background effects */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent animate-slide-slow pointer-events-none"></div>
+            <div className="absolute w-[200px] h-[200px] rounded-full bg-primary/5 -bottom-[150px] left-1/2 -translate-x-1/2 animate-pulse-scale pointer-events-none"></div> {/* Reduced size */}
             <Button
               variant="ghost"
               size="icon"
               title="Home"
-              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent relative group"
+              className="flex flex-col h-auto p-2 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent relative group"
               style={{
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
               }}
@@ -212,14 +332,17 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
                 showToast(e, "Home");
               }}
             >
-              <Home size={20} className={activeTab === "Home" ? "animate-pulse-subtle" : ""} />
+              <div className="nav-icon-wrapper w-full h-full flex items-center justify-center"> {/* Added explicit dimensions */}
+                <div className="nav-icon-bg"></div>
+                <Home size={22} className={activeTab === "Home" ? "animate-pulse-subtle relative z-10" : "relative z-10"} />
+              </div>
               {activeTab === "Home" && <div className="bottom-nav-active-indicator animate-in fade-in duration-300"></div>}
             </Button>
             <Button
               variant="ghost"
               size="icon"
               title="Projects"
-              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent relative group"
+              className="flex flex-col h-auto p-2 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent relative group"
               style={{
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
               }}
@@ -229,14 +352,17 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
                 showToast(e, "Projects");
               }}
             >
-              <Briefcase size={20} className={activeTab === "Projects" ? "animate-pulse-subtle" : ""} />
+              <div className="nav-icon-wrapper w-full h-full flex items-center justify-center">
+                <div className="nav-icon-bg"></div>
+                <Briefcase size={22} className={activeTab === "Projects" ? "animate-pulse-subtle relative z-10" : "relative z-10"} />
+              </div>
               {activeTab === "Projects" && <div className="bottom-nav-active-indicator animate-in fade-in duration-300"></div>}
             </Button>
             <Button
               variant="ghost"
               size="icon"
               title="Education"
-              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent relative group"
+              className="flex flex-col h-auto p-2 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent relative group"
               style={{
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
               }}
@@ -246,14 +372,17 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
                 showToast(e, "Education");
               }}
             >
-              <GraduationCap size={20} className={activeTab === "Education" ? "animate-pulse-subtle" : ""} />
+              <div className="nav-icon-wrapper w-full h-full flex items-center justify-center">
+                <div className="nav-icon-bg"></div>
+                <GraduationCap size={22} className={activeTab === "Education" ? "animate-pulse-subtle relative z-10" : "relative z-10"} />
+              </div>
               {activeTab === "Education" && <div className="bottom-nav-active-indicator animate-in fade-in duration-300"></div>}
             </Button>
             <Button
               variant="ghost"
               size="icon"
               title="Experience"
-              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent relative group"
+              className="flex flex-col h-auto p-2 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent relative group"
               style={{
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
               }}
@@ -263,14 +392,17 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
                 showToast(e, "Experience");
               }}
             >
-              <Award size={20} className={activeTab === "Experience" ? "animate-pulse-subtle" : ""} />
+              <div className="nav-icon-wrapper w-full h-full flex items-center justify-center">
+                <div className="nav-icon-bg"></div>
+                <Award size={22} className={activeTab === "Experience" ? "animate-pulse-subtle relative z-10" : "relative z-10"} />
+              </div>
               {activeTab === "Experience" && <div className="bottom-nav-active-indicator animate-in fade-in duration-300"></div>}
             </Button>
             <Button
               variant="ghost"
               size="icon"
               title="Contact me"
-              className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent relative group"
+              className="flex flex-col h-auto p-2 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent relative group"
               style={{
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
               }}
@@ -280,7 +412,10 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
                 showToast(e, "Contact");
               }}
             >
-              <Mail size={20} className={activeTab === "Contact" ? "animate-pulse-subtle" : ""} />
+              <div className="nav-icon-wrapper w-full h-full flex items-center justify-center">
+                <div className="nav-icon-bg"></div>
+                <Mail size={22} className={activeTab === "Contact" ? "animate-pulse-subtle relative z-10" : "relative z-10"} />
+              </div>
               {activeTab === "Contact" && <div className="bottom-nav-active-indicator animate-in fade-in duration-300"></div>}
             </Button>
           </div>
