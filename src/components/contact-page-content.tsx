@@ -9,14 +9,8 @@ import type { LucideIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
-// Initialize EmailJS
-const EMAILJS_PUBLIC_KEY = "OBUIh5LK9yqQ3ido7";
-const EMAILJS_SERVICE_ID = "service_g7iwd3m";
-const EMAILJS_TEMPLATE_ID = "template_v58a16a";
-
-if (EMAILJS_PUBLIC_KEY) {
-  emailjs.init(EMAILJS_PUBLIC_KEY);
-}
+// EmailJS configuration
+emailjs.init("OBUIh5LK9yqQ3ido7");
 
 import { Button } from "@/components/ui/button";
 import {
@@ -96,18 +90,6 @@ const ContactPageContent: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-
-      if (!serviceId || !templateId) {
-        console.error('EmailJS Config:', {
-          serviceId,
-          templateId,
-          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-        });
-        throw new Error('EmailJS configuration is missing');
-      }
-      
       const templateParams = {
         from_name: data.fullName,
         from_email: data.email,
@@ -116,7 +98,7 @@ const ContactPageContent: React.FC = () => {
         reply_to: data.email
       };
       
-      await emailjs.send(serviceId, templateId, templateParams);
+      await emailjs.send("service_g7iwd3m", "template_v58a16a", templateParams);
       
       toast({
         title: contactForm.toastTitle,
