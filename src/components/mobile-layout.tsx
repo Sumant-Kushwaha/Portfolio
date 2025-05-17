@@ -11,7 +11,6 @@ import EducationPageContent from '@/components/education-page-content';
 import ContactPageContent from '@/components/contact-page-content';
 import ExperiencePageContent from '@/components/experience-page-content';
 import ProjectsPageContent from '@/components/projects-page-content';
-import FloatingResumeButton from '@/components/floating-resume-button';
 
 interface MobileLayoutProps {
   children?: React.ReactNode;
@@ -101,19 +100,19 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             {renderContent()}
           </div>
 
-          <FloatingResumeButton />
 
           {/* Bottom Navigation Bar (semi-transparent + blurred) */}
           <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-t-md bg-background/60 backdrop-blur-md border-t border-border/40">
             <Button
               variant="ghost"
               size="icon"
+              title="Home"
               className="flex flex-col h-auto p-1 text-muted-foreground hover:text-primary hover:bg-transparent focus-visible:text-primary data-[active=true]:text-accent"
               data-active={activeTab === "Home"}
               onClick={() => setActiveTab("Home")}
             >
               <Home size={24} />
-              <span className="text-sm mt-0.5">Home</span>
+              {/* <span className="text-sm mt-0.5">Home</span> */}
             </Button>
             <Button
               variant="ghost"
@@ -123,7 +122,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab("Projects")}
             >
               <Briefcase size={24} />
-              <span className="text-sm mt-0.5">Projects</span>
+              {/* <span className="text-sm mt-0.5">Projects</span> */}
             </Button>
             <Button
               variant="ghost"
@@ -133,7 +132,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab("Education")}
             >
               <GraduationCap size={24} />
-              <span className="text-sm mt-0.5">Education</span>
+              {/* <span className="text-sm mt-0.5">Education</span> */}
             </Button>
             <Button
               variant="ghost"
@@ -143,7 +142,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               onClick={() => setActiveTab("Experience")}
             >
               <Award size={24} />
-              <span className="text-sm mt-0.5">Experience</span>
+              {/* <span className="text-sm mt-0.5">Experience</span> */}
             </Button>
             <Button
               variant="ghost"
@@ -152,8 +151,8 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
               data-active={activeTab === "Contact"}
               onClick={() => setActiveTab("Contact")}
             >
-              <Mail size={24} />
-              <span className="text-sm mt-0.5">Contact</span>
+              <Mail size={32} />
+              {/* <span className="text-sm mt-0.5">Contact</span> */}
             </Button>
           </div>
         </div>
