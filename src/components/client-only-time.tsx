@@ -22,10 +22,11 @@ const ClientOnlyTime: React.FC = () => {
 
   if (!time) {
     // Render nothing or a placeholder until time is set to avoid mismatch
-    return <span className="w-14"></span>; // Placeholder width to prevent layout shift
+    return <span className="w-10"></span>; // Placeholder width to prevent layout shift
   }
 
-  return <span className="text-xl">{time}</span>;
+  return <span className="text-xs">{time}</span>;
 };
 
 export default ClientOnlyTime;
+
