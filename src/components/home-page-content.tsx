@@ -35,7 +35,7 @@ const HomePageContent: React.FC = () => {
     if (!isDeleting) { // Typing
       if (charIndex < currentSkill.length) {
         timeoutId = setTimeout(() => {
-          setDisplayedText((prev) => currentSkill.substring(0, charIndex + 1));
+          setDisplayedText(currentSkill.substring(0, charIndex + 1));
           setCharIndex((prev) => prev + 1);
         }, TYPING_SPEED);
       } else { // Finished typing current word
@@ -46,7 +46,7 @@ const HomePageContent: React.FC = () => {
     } else { // Deleting
       if (charIndex > 0) {
         timeoutId = setTimeout(() => {
-          setDisplayedText((prev) => currentSkill.substring(0, charIndex - 1));
+          setDisplayedText(currentSkill.substring(0, charIndex - 1));
           setCharIndex((prev) => prev - 1);
         }, DELETING_SPEED);
       } else { // Finished deleting current word
@@ -67,7 +67,11 @@ const HomePageContent: React.FC = () => {
         <CardContent className="p-3">
           <div className="flex flex-col items-center text-center">
             <Avatar className="w-20 h-20 mb-2 border-2 border-primary">
-              <AvatarImage src="https://placehold.co/128x128.png" alt={homePageContent.avatarAltText} data-ai-hint="profile avatar" />
+              <AvatarImage 
+                src={homePageContent.avatarImageSrc} 
+                alt={homePageContent.avatarAltText} 
+                data-ai-hint={homePageContent.avatarDataAiHint} 
+              />
               <AvatarFallback className="text-2xl">{homePageContent.avatarFallback}</AvatarFallback>
             </Avatar>
             <h1 className="text-3xl font-bold text-foreground mb-1">

@@ -10,6 +10,10 @@ export interface HomeStat {
 export interface HomePageData {
   greeting: string;
   dynamicSkills: string[];
+  avatarImageSrc: string;
+  avatarAltText: string;
+  avatarDataAiHint: string;
+  avatarFallback: string;
   introParagraph: string;
   highlightsTitle: string;
   coreTechTitle: string;
@@ -28,6 +32,10 @@ const techStack: string[] = [
 export const homePageContent: HomePageData = {
   greeting: "Hi! I'm Sumant Mourya 👋",
   dynamicSkills: techStack,
+  avatarImageSrc: "https://placehold.co/128x128.png",
+  avatarAltText: "Sumant Mourya",
+  avatarDataAiHint: "profile avatar",
+  avatarFallback: "SM",
   introParagraph:
     "Passionate about crafting clean, efficient, and beautiful Android apps using Kotlin and Jetpack Compose. With a strong foundation in Android architecture components, modern UI design, and automation scripting, I build apps that are both functional and delightful to use.",
   highlightsTitle: "Highlights & Skills",
