@@ -12,10 +12,14 @@ const ProjectsPageContent: React.FC = () => {
 
   return (
     <div className="flex flex-col space-y-2.5">
-      <h2 className="text-3xl font-semibold text-primary mb-0 text-center">My Projects</h2>
+       <Card className="shadow-lg mb-0"> 
+        <CardHeader className="p-3 bg-muted/30">
+          <CardTitle className="text-3xl font-semibold text-primary text-center">My Projects</CardTitle>
+        </CardHeader>
+      </Card>
       {sortedProjects.map((project) => (
         <Card key={project.id} className="shadow-lg overflow-hidden">
-          <CardHeader className="p-3 pb-1.5">
+          <CardHeader className="p-3 pb-1.5 bg-muted/30">
             <CardTitle className="text-2xl font-bold text-foreground">{project.title}</CardTitle>
           </CardHeader>
           <CardContent className="p-3 pt-1 text-base">

@@ -89,7 +89,7 @@ const HomePageContent: React.FC = () => {
       </Card>
 
       <Card className="shadow-lg">
-          <CardHeader className="p-2">
+          <CardHeader className="p-2 bg-muted/30">
             <CardTitle className="text-2xl font-semibold text-primary text-center">{homePageContent.highlightsTitle}</CardTitle>
           </CardHeader>
           <CardContent className="p-2 pt-0">
@@ -113,7 +113,7 @@ const HomePageContent: React.FC = () => {
                 const StatIcon = iconMap[stat.iconName];
                 return (
                   <Card key={stat.id} className="shadow-md bg-card"> 
-                    <CardHeader className="p-2 pb-1">
+                    <CardHeader className="p-2 pb-1 bg-muted/30">
                       <CardTitle className="text-lg font-semibold text-center flex flex-col items-center gap-1"> 
                         {StatIcon && <StatIcon size={20} className="text-primary" />}
                         {stat.title}
@@ -131,7 +131,7 @@ const HomePageContent: React.FC = () => {
         </Card>
         
         <Card className="shadow-lg">
-          <CardHeader className="p-2">
+          <CardHeader className="p-2 bg-muted/30">
             <CardTitle className="text-2xl font-semibold text-primary text-center">{homePageContent.getInTouchTitle}</CardTitle>
           </CardHeader>
           <CardContent className="p-2 pt-0">

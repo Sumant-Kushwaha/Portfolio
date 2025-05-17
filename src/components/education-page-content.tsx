@@ -18,7 +18,7 @@ const EducationPageContent: React.FC = () => {
   return (
     <div className="flex flex-col space-y-2.5">
       <Card className="shadow-lg">
-        <CardHeader className="p-3 flex flex-col items-center justify-center">
+        <CardHeader className="p-3 flex flex-col items-center justify-center bg-muted/30">
           {PageIcon && <PageIcon size={80} className="mb-2 text-primary" />}
           <CardTitle className="text-3xl font-semibold text-primary text-center">
             {educationPageContent.pageTitle}

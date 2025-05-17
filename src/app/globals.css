@@ -6,11 +6,13 @@
 /* Define base HSL values for outside theme */
 :root {
   /* Expressive Light Theme (Outside) */
-  --light-outside-bg-hsl: 220 60% 97%; /* Lighter, soft powder blue */
+  --light-outside-bg-start-hsl: 220 60% 97%; /* Lighter, soft powder blue */
+  --light-outside-bg-end-hsl: 210 50% 95%;   /* Slightly different soft blue */
   --light-outside-fg-hsl: 225 30% 25%; /* Darker, slightly muted slate blue */
   
   /* Expressive Dark Theme (Outside) */
-  --dark-outside-bg-hsl: 240 20% 10%;  /* Deep, very dark indigo */
+  --dark-outside-bg-start-hsl: 240 20% 10%;  /* Deep, very dark indigo */
+  --dark-outside-bg-end-hsl: 250 15% 8%;    /* Slightly different very dark indigo/purple */
   --dark-outside-fg-hsl: 230 50% 90%;  /* Soft, light grayish lavender */
 }
 
@@ -19,18 +21,19 @@
   display: flex;
   flex-direction: column;
   
-  --current-outside-bg-hsl: var(--light-outside-bg-hsl);
+  --current-outside-bg-start-hsl: var(--light-outside-bg-start-hsl);
+  --current-outside-bg-end-hsl: var(--light-outside-bg-end-hsl);
   --current-outside-fg-hsl: var(--light-outside-fg-hsl);
   
-  background-color: hsl(var(--current-outside-bg-hsl));
+  background-image: linear-gradient(to bottom right, hsl(var(--current-outside-bg-start-hsl)), hsl(var(--current-outside-bg-end-hsl)));
   color: hsl(var(--current-outside-fg-hsl));
 
   /* ShadCN vars for elements like Splash and Toaster in the outside context (Light) */
-  --background: var(--current-outside-bg-hsl);
+  --background: hsl(var(--current-outside-bg-start-hsl)); /* Use start color for base background of components */
   --foreground: var(--current-outside-fg-hsl);
-  --card: var(--current-outside-bg-hsl);
+  --card: hsl(var(--current-outside-bg-start-hsl));
   --card-foreground: var(--current-outside-fg-hsl);
-  --popover: var(--current-outside-bg-hsl);
+  --popover: hsl(var(--current-outside-bg-start-hsl));
   --popover-foreground: var(--current-outside-fg-hsl);
   
   /* Expressive Light Theme Colors */
@@ -57,7 +60,8 @@
 }
 
 .outside-theme-wrapper.theme-outside-dark {
-  --current-outside-bg-hsl: var(--dark-outside-bg-hsl);
+  --current-outside-bg-start-hsl: var(--dark-outside-bg-start-hsl);
+  --current-outside-bg-end-hsl: var(--dark-outside-bg-end-hsl);
   --current-outside-fg-hsl: var(--dark-outside-fg-hsl);
 
   /* Dark theme values for ShadCN vars in outside context */
