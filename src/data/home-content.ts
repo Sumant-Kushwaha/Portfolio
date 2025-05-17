@@ -33,7 +33,7 @@ const techStack: string[] = [
 export const homePageContent: HomePageData = {
   greeting: "Hi! I'm Sumant Mourya 👋",
   dynamicSkills: techStack,
-  avatarImageSrc: "https://placehold.co/128x128.png",
+  avatarImageSrc: "profile.jpg",
   avatarAltText: "Sumant Mourya",
   avatarDataAiHint: "profile avatar",
   avatarFallback: "SM",
@@ -51,5 +51,5 @@ export const homePageContent: HomePageData = {
   getInTouchTitle: "Get in Touch",
   email: "SumantKushwaha.dev@gmail.com",
   phone: "+91 9939824083",
-  resumeDownloadLink: "/resume-placeholder.pdf", // Example link
+  resumeDownloadLink: "/Sumant-Resume.pdf", // Example link
 };
