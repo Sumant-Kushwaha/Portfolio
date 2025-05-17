@@ -12,10 +12,10 @@ import EducationPageContent from '@/components/education-page-content';
 import ContactPageContent from '@/components/contact-page-content';
 import ExperiencePageContent from '@/components/experience-page-content';
 import ProjectsPageContent from '@/components/projects-page-content'; 
-
+import FloatingResumeButton from '@/components/floating-resume-button'; // Import the FAB
 
 interface MobileLayoutProps {
-  children?: React.ReactNode;
+  children?: React.ReactNode; // children is not strictly used if we always render content based on activeTab
 }
 
 const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
@@ -31,7 +31,6 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const initialTheme = prefersDark ? 'dark' : 'light';
         setMobileTheme(initialTheme);
-        // Also save this initial theme to localStorage if it wasn't found
         localStorage.setItem('mobileTheme', initialTheme);
       }
     }
@@ -40,9 +39,6 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
   useEffect(() => {
     if (typeof window !== 'undefined' && mobileTheme) { 
         localStorage.setItem('mobileTheme', mobileTheme);
-        // Apply theme class to a specific container if needed, or html/body
-        // document.documentElement.classList.remove('theme-mobile-light', 'theme-mobile-dark');
-        // document.documentElement.classList.add(`theme-mobile-${mobileTheme}`);
     }
   }, [mobileTheme]);
 
@@ -113,6 +109,8 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           )}>
             {renderContent()}
           </div>
+          
+          <FloatingResumeButton /> {/* Add the FAB here, inside mobile screen context */}
 
           {/* Bottom Navigation Bar - Translucent */}
           <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-t-md bg-background/70 backdrop-blur-sm">

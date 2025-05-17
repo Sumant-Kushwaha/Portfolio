@@ -7,7 +7,7 @@ import MobileLayout from '@/components/mobile-layout';
 import ThemeToggleButton from '@/components/theme-toggle-button';
 import HomePageContent from '@/components/home-page-content';
 import { Toaster } from "@/components/ui/toaster";
-import FloatingResumeButton from '@/components/floating-resume-button'; // Import the new button
+// FloatingResumeButton is now moved to MobileLayout
 
 interface HomePageProps {
   params?: Record<string, string | string[]>;
@@ -28,7 +28,7 @@ export default function Home({ params, searchParams }: HomePageProps) {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const initialTheme = prefersDark ? 'dark' : 'light';
         setOutsideTheme(initialTheme);
-        localStorage.setItem('outsideTheme', initialTheme); // Save initial if not found
+        localStorage.setItem('outsideTheme', initialTheme); 
       }
     }
 
@@ -73,7 +73,7 @@ export default function Home({ params, searchParams }: HomePageProps) {
       ) : mainContent }
       
       <Toaster />
-      <FloatingResumeButton /> {/* Add the FAB here */}
+      {/* FloatingResumeButton removed from here */}
     </div>
   );
 }
