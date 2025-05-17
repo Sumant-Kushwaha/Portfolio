@@ -10,9 +10,9 @@ import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
 // Initialize EmailJS
-const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = "OBUIh5LK9yqQ3ido7";
+const EMAILJS_SERVICE_ID = "service_g7iwd3m";
+const EMAILJS_TEMPLATE_ID = "template_v58a16a";
 
 if (EMAILJS_PUBLIC_KEY) {
   emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -63,6 +63,22 @@ const ContactPageContent: React.FC = () => {
   const { contactInfo, contactForm } = contactPageContent;
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  useEffect(() => {
+    const init = async () => {
+      try {
+        const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+        if (!publicKey) {
+          console.error('EmailJS public key is missing');
+          return;
+        }
+        emailjs.init(publicKey);
+      } catch (error) {
+        console.error('Error initializing EmailJS:', error);
+      }
+    };
+    init();
+  }, []);
+
 
   const ContactInfoIcon = iconMap[contactInfo.iconName];
   const ContactFormIcon = iconMap[contactForm.iconName];
@@ -80,11 +96,14 @@ const ContactPageContent: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+
+      if (!serviceId || !templateId) {
         console.error('EmailJS Config:', {
-          serviceId: EMAILJS_SERVICE_ID,
-          templateId: EMAILJS_TEMPLATE_ID,
-          publicKey: EMAILJS_PUBLIC_KEY
+          serviceId,
+          templateId,
+          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
         });
         throw new Error('EmailJS configuration is missing');
       }
@@ -97,7 +116,7 @@ const ContactPageContent: React.FC = () => {
         reply_to: data.email
       };
       
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+      await emailjs.send(serviceId, templateId, templateParams);
       
       toast({
         title: contactForm.toastTitle,
