@@ -31,16 +31,19 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const initialTheme = prefersDark ? 'dark' : 'light';
         setMobileTheme(initialTheme);
-        localStorage.setItem('mobileTheme', initialTheme); // Save initial theme if not stored
+        // No need to save here, the second useEffect will handle it if it's a new derived theme
       }
     }
-  }, []);
+  }, []); // Runs once on mount
 
   useEffect(() => {
+    // This effect runs when mobileTheme changes, including its initial setting.
+    // This ensures that if the theme was derived from system preference (because nothing was in localStorage),
+    // it gets saved to localStorage.
     if (typeof window !== 'undefined' && mobileTheme) { 
         localStorage.setItem('mobileTheme', mobileTheme);
     }
-  }, [mobileTheme]);
+  }, [mobileTheme]); // Runs when mobileTheme changes
 
 
   const renderContent = () => {
@@ -104,7 +107,8 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           <div
             key={activeTab} 
             className={cn(
-            "flex-grow p-2.5 pt-2.5 overflow-y-auto overflow-x-hidden pb-[calc(4rem+0.625rem)] no-scrollbar animate-fadeIn"
+            "flex-grow p-2.5 pt-2.5 overflow-y-auto overflow-x-hidden pb-[calc(4rem+0.625rem)] no-scrollbar",
+            "animate-in fade-in slide-in-from-bottom-4 duration-300 ease-out"
           )}>
             {renderContent()}
           </div>
@@ -169,3 +173,4 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
 };
 
 export default MobileLayout;
+
