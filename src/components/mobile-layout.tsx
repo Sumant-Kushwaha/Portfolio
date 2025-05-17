@@ -90,9 +90,10 @@ const GlobalStyles = () => {
       .material-shape {
         position: absolute;
         border-radius: 50%;
-        opacity: 0.5;
+        opacity: 0.3; /* Reduced opacity for better text visibility */
         filter: blur(40px);
         z-index: 0;
+        pointer-events: none; /* Ensures touch events pass through */
       }
       
       .theme-mobile-dark .material-shape.primary {
@@ -142,6 +143,7 @@ const GlobalStyles = () => {
         justify-content: center;
         align-items: center;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 5; /* Ensure it's above other elements for touch */
       }
       
       .nav-icon-bg {
@@ -152,16 +154,17 @@ const GlobalStyles = () => {
         opacity: 0;
         transform: scale(0);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none; /* Ensures touch events pass through */
       }
       
       .theme-mobile-dark [data-active=true] .nav-icon-bg {
-        background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.1) 70%, transparent 100%);
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, rgba(168, 85, 247, 0.15) 70%, transparent 100%);
         opacity: 1;
         transform: scale(1.5);
       }
       
       [data-active=true] .nav-icon-bg {
-        background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.1) 70%, transparent 100%);
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(139, 92, 246, 0.15) 70%, transparent 100%);
         opacity: 1;
         transform: scale(1.5);
       }
@@ -254,10 +257,10 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             mobileTheme === "dark" ? "theme-mobile-dark bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900" : "bg-gradient-to-b from-gray-50 via-white to-gray-50"
           )}
         >
-          {/* Material You background shapes */}
-          <div className="material-shape primary animate-float" style={{ width: '250px', height: '250px', top: '15%', left: '15%' }}></div>
-          <div className="material-shape secondary animate-float-reverse" style={{ width: '200px', height: '200px', top: '50%', right: '10%' }}></div>
-          <div className="material-shape tertiary animate-float" style={{ width: '180px', height: '180px', bottom: '15%', left: '30%' }}></div>
+          {/* Material You background shapes - reduced size and repositioned for better text visibility */}
+          <div className="material-shape primary animate-float" style={{ width: '200px', height: '200px', top: '10%', left: '10%' }}></div>
+          <div className="material-shape secondary animate-float-reverse" style={{ width: '180px', height: '180px', top: '60%', right: '5%' }}></div>
+          <div className="material-shape tertiary animate-float" style={{ width: '150px', height: '150px', bottom: '25%', left: '20%' }}></div>
           {/* Status Bar (semi-transparent + blurred) */}
           <div className="relative h-10 flex items-center text-foreground z-10 shrink-0 px-5 bg-background/70 backdrop-blur-xl border-b border-border/40">
             <div className="flex-1 flex justify-start items-center">
@@ -312,7 +315,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
           )}
           
           {/* Bottom Navigation Bar (semi-transparent + blurred) */}
-          <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-lg bg-background/70 backdrop-blur-xl border-t border-border/40 relative overflow-hidden">
+          <div className="h-16 flex items-center justify-around p-1 shrink-0 shadow-lg bg-background/80 backdrop-blur-md border-t border-border/50 relative overflow-hidden z-10">
             {/* Animated background effects */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent animate-slide-slow pointer-events-none"></div>
             <div className="absolute w-[300px] h-[300px] rounded-full bg-primary/5 -bottom-[250px] left-1/2 -translate-x-1/2 animate-pulse-scale pointer-events-none"></div>
@@ -332,7 +335,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             >
               <div className="nav-icon-wrapper">
                 <div className="nav-icon-bg"></div>
-                <Home size={22} className={activeTab === "Home" ? "animate-pulse-subtle relative z-10" : "relative z-10"} />
+                <Home size={22} className={activeTab === "Home" ? "animate-pulse-subtle relative z-10 text-primary" : "relative z-10"} />
               </div>
               {activeTab === "Home" && <div className="bottom-nav-active-indicator animate-in fade-in duration-300"></div>}
             </Button>
@@ -352,7 +355,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             >
               <div className="nav-icon-wrapper">
                 <div className="nav-icon-bg"></div>
-                <Briefcase size={22} className={activeTab === "Projects" ? "animate-pulse-subtle relative z-10" : "relative z-10"} />
+                <Briefcase size={22} className={activeTab === "Projects" ? "animate-pulse-subtle relative z-10 text-primary" : "relative z-10"} />
               </div>
               {activeTab === "Projects" && <div className="bottom-nav-active-indicator animate-in fade-in duration-300"></div>}
             </Button>
@@ -372,7 +375,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             >
               <div className="nav-icon-wrapper">
                 <div className="nav-icon-bg"></div>
-                <GraduationCap size={22} className={activeTab === "Education" ? "animate-pulse-subtle relative z-10" : "relative z-10"} />
+                <GraduationCap size={22} className={activeTab === "Education" ? "animate-pulse-subtle relative z-10 text-primary" : "relative z-10"} />
               </div>
               {activeTab === "Education" && <div className="bottom-nav-active-indicator animate-in fade-in duration-300"></div>}
             </Button>
@@ -392,7 +395,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             >
               <div className="nav-icon-wrapper">
                 <div className="nav-icon-bg"></div>
-                <Award size={22} className={activeTab === "Experience" ? "animate-pulse-subtle relative z-10" : "relative z-10"} />
+                <Award size={22} className={activeTab === "Experience" ? "animate-pulse-subtle relative z-10 text-primary" : "relative z-10"} />
               </div>
               {activeTab === "Experience" && <div className="bottom-nav-active-indicator animate-in fade-in duration-300"></div>}
             </Button>
@@ -412,7 +415,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ children }) => {
             >
               <div className="nav-icon-wrapper">
                 <div className="nav-icon-bg"></div>
-                <Mail size={22} className={activeTab === "Contact" ? "animate-pulse-subtle relative z-10" : "relative z-10"} />
+                <Mail size={22} className={activeTab === "Contact" ? "animate-pulse-subtle relative z-10 text-primary" : "relative z-10"} />
               </div>
               {activeTab === "Contact" && <div className="bottom-nav-active-indicator animate-in fade-in duration-300"></div>}
             </Button>

@@ -21,7 +21,7 @@ export const experiencePageContent: ExperiencePageData = {
   experienceEntries: [
     {
       id: "itc",
-      role: "Quality Control - SAP (Internship)",
+      role: "Quality Control - SAP",
       company: "ITC Limited",
       skillsTitle: "Skills & Technologies:",
       skills: ["SAP ERP", "Quality Control Procedures", "Data Analysis", "Reporting"],
